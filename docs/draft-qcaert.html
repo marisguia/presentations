@@ -1,0 +1,2710 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+<style>
+  div.csl-bib-body { }
+  div.csl-entry {
+    clear: both;
+      margin-bottom: 0em;
+    }
+  .hanging div.csl-entry {
+    margin-left:2em;
+    text-indent:-2em;
+  }
+  div.csl-left-margin {
+    min-width:2em;
+    float:left;
+  }
+  div.csl-right-inline {
+    margin-left:2em;
+    padding-left:1em;
+  }
+  div.csl-indent {
+    margin-left: 2em;
+  }
+</style>
+
+  <!--radix_placeholder_meta_tags-->
+  <title>[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis</title>
+
+  <meta property="description" itemprop="description" content="This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) [@ragin2014]. Building on the workflow supported by the QCA package [@dusa2019], qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole."/>
+
+  <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2026-05-25"/>
+  <meta property="article:created" itemprop="dateCreated" content="2026-05-25"/>
+  <meta name="article:author" content="Breno A. H. Marisguia"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) [@ragin2014]. Building on the workflow supported by the QCA package [@dusa2019], qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis"/>
+  <meta property="twitter:description" content="This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) [@ragin2014]. Building on the workflow supported by the QCA package [@dusa2019], qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole."/>
+
+  <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
+  <meta name="citation_title" content="[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis"/>
+  <meta name="citation_pdf_url" content="draft-qcaert.pdf"/>
+  <meta name="citation_journal_title" content="The R Journal"/>
+  <meta name="citation_issn" content="2073-4859"/>
+  <meta name="citation_firstpage" content="1"/>
+  <meta name="citation_fulltext_world_readable" content=""/>
+  <meta name="citation_online_date" content="2026/05/25"/>
+  <meta name="citation_publication_date" content="2026/05/25"/>
+  <meta name="citation_author" content="Breno A. H. Marisguia"/>
+  <meta name="citation_author_institution" content="Political Science Department, Federal University of Minas Gerais"/>
+  <!--/radix_placeholder_meta_tags-->
+  
+  <meta name="citation_reference" content="citation_title=QCA with R: A comprehensive resource;citation_publisher=Springer;citation_author=Adrian Dusa"/>
+  <meta name="citation_reference" content="citation_title=World happiness report 2025;citation_publisher=University of Oxford: Wellbeing Research Centre;citation_author=John F. Helliwell;citation_author=Richard Layard;citation_author=Jeffrey D. Sachs;citation_author=Jan-Emmanuel De Neve;citation_author=Lara B. Aknin;citation_author=Shun Wang"/>
+  <meta name="citation_reference" content="citation_title=SetMethods: An add-on R package for advanced QCA;citation_volume=10;citation_author=Ioana-Elena Oana;citation_author=Carsten Q. Schneider"/>
+  <meta name="citation_reference" content="citation_title=A robustness test protocol for applied QCA: Theory and R software application;citation_volume=53;citation_author=Ioana-Elena Oana;citation_author=Carsten Q. Schneider"/>
+  <meta name="citation_reference" content="citation_title=Qualitative comparative analysis using R: A beginner’s guide;citation_publisher=Cambridge University Press;citation_author=Ioana-Elena Oana;citation_author=Carsten Q. Schneider;citation_author=Eva Thomann"/>
+  <meta name="citation_reference" content="citation_title=The comparative method: Moving beyond qualitative and quantitative strategies;citation_publisher=University of California Press;citation_author=Charles C. Ragin"/>
+  <meta name="citation_reference" content="citation_title=Transparency standards in qualitative comparative analysis;citation_author=Carsten Q. Schneider"/>
+  <meta name="citation_reference" content="citation_title=Set-theoretic methods for the social sciences: A guide to qualitative comparative analysis;citation_publisher=Cambridge University Press;citation_author=Carsten Q. Schneider;citation_author=Claudius Wagemann"/>
+  <meta name="citation_reference" content="citation_title=Assessing the robustness of crisp-set and fuzzy-set QCA results;citation_volume=40;citation_author=Svend-Erik Skaaning"/>
+  <meta name="citation_reference" content="citation_title=Designing research with qualitative comparative analysis (QCA): Approaches, challenges, and tools;citation_volume=49;citation_author=Eva Thomann;citation_author=Martino Maggetti"/>
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","date","description","author","type","packages","output","bibliography","journal","slug","pdf_url","creative_commons","CTV","csl"]}},"value":[{"type":"character","attributes":{},"value":["[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis"]},{"type":"character","attributes":{},"value":["2026-05-25"]},{"type":"character","attributes":{},"value":["This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) [@ragin2014]. Building on the workflow supported by the QCA package [@dusa2019], qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","affiliation","email"]}},"value":[{"type":"character","attributes":{},"value":["Breno A. H. Marisguia"]},{"type":"character","attributes":{},"value":["Political Science Department, Federal University of Minas Gerais"]},{"type":"character","attributes":{},"value":["marisguiabreno@gmail.com"]}]}]},{"type":"character","attributes":{},"value":["package"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["cran"]}},"value":[{"type":"character","attributes":{},"value":["QCA","qcaERT","ggplot2"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained","toc"]}},"value":[{"type":"logical","attributes":{},"value":[false]},{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["RJreferences.bib"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","issn","firstpage","lastpage"]}},"value":[{"type":"character","attributes":{},"value":["The R Journal"]},{"type":"character","attributes":{},"value":["2073-4859"]},{"type":"double","attributes":{},"value":[1]},{"type":"NULL"}]},{"type":"character","attributes":{},"value":["draft-qcaert"]},{"type":"character","attributes":{},"value":["draft-qcaert.pdf"]},{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["ChemPhys","NetworkAnalysis","Phylogenetics","Spatial","TeachingStatistics"]},{"type":"character","attributes":{},"value":["C:/Program Files/R/R-4.4.1/library/rjtools/rjournal.csl"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["all tests.RDataTmp","Bibliography about robustness (for literature review only)/Oana & Schneider. A robustness test protocol for applied QCA. 2024 - PART 1.txt","Bibliography about robustness (for literature review only)/Oana & Schneider. A robustness test protocol for applied QCA. 2024 - PART 2.txt","Bibliography about robustness (for literature review only)/Oana I.; Schneider. C.; Thoman, E. QCA using R. 2021 - PART 1.txt","Bibliography about robustness (for literature review only)/Oana I.; Schneider. C.; Thoman, E. QCA using R. 2021 - PART 2.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 1. Part 1.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 1. Part 2.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 11. Part 1.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 11. Part 2.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 3.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 6. Part 1.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 6. Part 2.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Chap 8.txt","Bibliography about robustness (for literature review only)/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences/Schneider & Wagemann. (2012). Set-Theoretic Methods for the Social Sciences. Introduction.txt","Bibliography about robustness (for literature review only)/Skaaning. Assessing the Robustness of Crisp-set and Fuzzy-set QCA. 2011.txt","Bibliography about robustness (for literature review only)/THOMANN, E.; MAGGETTI, M. Designing Research With QCA - Approaches, Challenges, and Tools. 2017 - PART 1.txt","Bibliography about robustness (for literature review only)/THOMANN, E.; MAGGETTI, M. Designing Research With QCA - Approaches, Challenges, and Tools. 2017 - PART 2.txt","Bibliography about robustness (for literature review only)/Wagemann, C.; Schneider, C. Transparency Standards in Qualitative Comparative Analysis. 2015.txt","draft-qcaert_files/figure-html5/calib2-plot-1.png","draft-qcaert_files/figure-html5/incl-plots-1.png","draft-qcaert_files/figure-html5/incl-plots-2.png","draft-qcaert_files/figure-html5/incl-plots-3.png","draft-qcaert_files/figure-html5/sol-chart-1.png","draft-qcaert_files/figure-html5/theory-plot-1.png","RJournal.sty","RJreferences.bib","WHR25_Data_Figure_2.1v3.xlsx"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="draft-qcaert_files/header-attrs-2.30/header-attrs.js"></script>
+  <script src="draft-qcaert_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <script src="draft-qcaert_files/popper-2.6.0/popper.min.js"></script>
+  <link href="draft-qcaert_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="draft-qcaert_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="draft-qcaert_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="draft-qcaert_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="draft-qcaert_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="draft-qcaert_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="draft-qcaert_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+  <script>
+    $(function() {
+      console.log("Starting...")
+
+      // Mathjax config (add automatic linebreaks when supported)
+      // MathJax = {
+      //    tex: {
+      //        inlineMath: [['$', '$'], ['\\(', '\\)']],
+      //        displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      //        tags: 'ams',
+      //        multline: true,
+      //    },
+      //    options: {
+      //        linebreaks: { automatic: true },
+      //    },
+      // };
+
+      // Always show Published - distill hides it if not set
+      function show_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'visible');
+      }
+
+      show_byline_column('Published')
+
+      // tweak function
+      var rmd_meta = JSON.parse($("#radix-rmarkdown-metadata").html());
+      function get_meta(name, meta) {
+        var ind = meta.attributes.names.value.findIndex((e) => e == name)
+        var val = meta.value[ind]
+        if (val.type != 'list') {
+          return val.value.toString()
+        }
+        return val
+      }
+
+      // tweak description
+      // Add clickable tags
+      const slug = get_meta('slug', rmd_meta)
+      const cite_url = get_meta('citation_url', rmd_meta)
+
+      var title = $("d-title").text
+
+      const buttons = $('<div class="dt-tags" style="grid-column: page;">')
+      buttons.append('<a href="#citation" class="dt-tag"><i class="fas fa-quote-left"></i> Cite</a>')
+      buttons.append('<a href="' + slug + '.pdf" class="dt-tag"><i class="fas fa-file-pdf"></i> PDF</a>')
+      buttons.append('<a href="' + slug + '.zip" class="dt-tag"><i class="fas fa-file-zipper"></i> Supplement</a>')
+
+      // adds Abstract: in front of the first <p> in the title section --
+      // unless it happens to be the subtitle (FIXME: this is a bad hack - can't distill do this?)
+      var tpar = $("d-title p:not(:empty)").filter(function() {
+        return !$(this).hasClass("subtitle");
+      }).first();
+      if (tpar) {
+        const abstract = $('<d-abstract>')
+        abstract.append('<b>Abstract:</b><br>')
+        abstract.append(tpar) // Move description to d-abstract
+        $("d-title p:empty").remove() // Remove empty paragraphs after title
+        abstract.append(buttons)
+        abstract.insertAfter($('d-title')) // Add abstract section after title */
+      }
+
+      // tweak by-line
+      var byline = $("d-byline div.byline")
+      ind = rmd_meta.attributes.names.value.findIndex((e) => e == "journal")
+      const journal = get_meta('journal', rmd_meta)
+      const volume = get_meta('volume', rmd_meta)
+      const issue = get_meta('issue', rmd_meta)
+      const jrtitle = get_meta('title', journal)
+      const year = ((jrtitle == "R News") ? 2000 : 2008) + parseInt(volume)
+      const firstpage = get_meta('firstpage', journal)
+      const lastpage = get_meta('lastpage', journal)
+      byline.append('<div class="rjournal grid">')
+      $('div.rjournal').append('<h3>Volume</h3>')
+      $('div.rjournal').append('<h3>Pages</h3>')
+      $('div.rjournal').append('<a class="volume" href="../../issues/'+year+'-'+issue+'">'+volume+'/'+issue+'</a>')
+      $('div.rjournal').append('<p class="pages">'+firstpage+' - '+lastpage+'</p>')
+
+      const received_date = new Date(get_meta('date_received', rmd_meta))
+      byline.find('h3:contains("Published")').parent().append('<h3>Received</h3><p>'+received_date.toLocaleDateString('en-US', {month: 'short'})+' '+received_date.getDate()+', '+received_date.getFullYear()+'</p>')
+
+    })
+  </script>
+
+  <style>
+      /*
+    .nav-dropdown-content .nav-dropdown-header {
+      text-transform: lowercase;
+    }
+    */
+
+    d-byline .byline {
+      grid-template-columns: 2fr 2fr 2fr 2fr;
+    }
+
+    d-byline .rjournal {
+      grid-column-end: span 2;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 0;
+    }
+
+    d-title h1, d-title p, d-title figure,
+    d-abstract p, d-abstract b {
+      grid-column: page;
+    }
+
+    d-title .dt-tags {
+      grid-column: page;
+    }
+
+    .dt-tags .dt-tag {
+      text-transform: lowercase;
+    }
+
+    d-article h1 {
+      line-height: 1.1em;
+    }
+
+    d-abstract p, d-article p {
+      text-align: justify;
+    }
+
+    @media(min-width: 1000px) {
+      .d-contents.d-contents-float {
+        justify-self: end;
+      }
+
+      nav.toc {
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+        border-right-width: 1px;
+        border-right-style: solid;
+        border-right-color: rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .posts-list .dt-tags .dt-tag {
+      text-transform: lowercase;
+    }
+
+    @keyframes highlight-target {
+      0% {
+        background-color: #ffa;
+      }
+      66% {
+        background-color: #ffa;
+      }
+      100% {
+        background-color: none;
+      }
+    }
+
+    d-article :target, d-appendix :target {
+       animation: highlight-target 3s;
+    }
+
+    .header-section-number {
+      margin-right: 0.5em;
+    }
+    
+    d-appendix .citation-appendix,
+    .d-appendix .citation-appendix {
+      color: rgb(60, 60, 60);
+    }
+
+    d-article h2 {
+      border-bottom: 0px solid rgba(0, 0, 0, 0.1);
+      padding-bottom: 0rem;
+    }
+    d-article h3 {
+      font-size: 20px;
+    }
+    d-article h4 {
+      font-size: 18px;
+      text-transform: none;
+    }
+
+    @media (min-width: 1024px) {
+      d-article h2 {
+        font-size: 32px;
+      }
+      d-article h3 {
+        font-size: 24px;
+      }
+      d-article h4 {
+        font-size: 20px;
+      }
+    }
+  </style>
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis","description":"This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) [@ragin2014]. Building on the workflow supported by the QCA package [@dusa2019], qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole.","authors":[{"author":"Breno A. H. Marisguia","authorURL":"#","affiliation":"Political Science Department, Federal University of Minas Gerais","affiliationURL":"#","orcidID":""}],"publishedDate":"2026-05-25T00:00:00.000-03:00","citationText":"Marisguia, 2026"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis</h1>
+
+<!--radix_placeholder_categories-->
+<!--/radix_placeholder_categories-->
+<p><p>This paper introduces qcaERT, an R package for appraising robustness in Qualitative Comparative Analysis (QCA) <span class="citation" data-cites="ragin2014">(<a href="#ref-ragin2014" role="doc-biblioref">Ragin 2014</a>)</span>. Building on the workflow supported by the QCA package <span class="citation" data-cites="dusa2019">(<a href="#ref-dusa2019" role="doc-biblioref">Dusa 2019</a>)</span>, qcaERT treats robustness evaluation as an auditable process through diagnostics for calibration thresholds, truth table cutoffs, case composition, cluster heterogeneity, and theory-specific condition sets. The package aims to make robustness appraisal more detailed and transparent while remaining consistent with the epistemological underpinnings of QCA. By documenting perturbations and comparisons, it allows researchers to report solutions together with their behavior under pressure. The resulting record leaves meaningful interpretation to the analyst while giving readers a clearer basis for evaluating analytic choices, thereby strengthening confidence in both the results and the research design as a whole.</p></p>
+</div>
+
+<div class="d-byline">
+  Breno A. H. Marisguia  (Political Science Department, Federal University of Minas Gerais)
+  
+<br/>2026-05-25
+</div>
+
+<div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<style>
+d-article div.sourceCode,
+d-article pre.r-output-scroll {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: auto !important;
+  overflow-y: visible;
+  box-sizing: border-box;
+}
+
+d-article div.sourceCode pre,
+d-article pre.sourceCode,
+d-article pre.r-output-scroll,
+d-article pre.r-output-scroll code,
+d-article pre > code.sourceCode {
+  white-space: pre !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+d-article pre.r-output-scroll code {
+  display: inline-block;
+  min-width: max-content;
+}
+</style>
+</div>
+<h2 data-number="1" id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>Robustness is a central concern in Qualitative Comparative Analysis (QCA). Beyond the usual preoccupations of any rigorous research design—a well-rounded, explorable research question; a clear understanding of the epistemological stance of the intended inference; a strong theory with enough observable implications; empirically relevant and measurable concepts; and a solid inferential strategy—researchers applying QCA must make, revise, and justify a range of analytically consequential decisions across the research process.</p>
+<p>Case and condition selection, calibration anchors, consistency and frequency thresholds, the treatment of logical remainders—which, by itself, involves another set of meaningful choices—and decisions about contradictory truth table rows all shape which configurations are treated as sufficient and which solution formulas become available for substantive interpretation. Robustness appraisal, therefore, ponders about how far a QCA result depends on a plethora of analytic choices, and what happens when equally plausible alternatives are considered. Indeed, the extent of analyst discretion involved in QCA makes robustness appraisal less standardized, and often more interpretively demanding, than many diagnostic routines in regression-based designs.</p>
+<p>With this in mind, this paper presents <strong><em>qcaERT</em></strong> as a transparency-oriented tool for appraising QCA robustness. Working on top of the workflow provided by the <em>QCA</em> package <span class="citation" data-cites="dusa2019">(<a href="#ref-dusa2019" role="doc-biblioref">Dusa 2019</a>)</span>, its purpose is to help researchers move from less structured robustness claims to visible, explicit robustness records. By organizing perturbations, comparisons, diagnostics, and settings in a common workflow, the package supports a form of robustness assessment that is compatible with QCA’s demands while also strengthening credibility.</p>
+<h2 data-number="2" id="framing-qca-robustness"><span class="header-section-number">2</span> Framing QCA robustness</h2>
+<p>Early discussions of QCA robustness framed the issue primarily as sensitivity to the discretionary choices surrounding calibration anchors, consistency thresholds, and frequency cutoffs. <span class="citation" data-cites="skaaning2011">Skaaning (<a href="#ref-skaaning2011" role="doc-biblioref">2011</a>)</span> argued that QCA users cannot rely only on theoretical justification and case knowledge to rule out arbitrariness, for even when choices are substantively motivated, small changes may alter the resulting truth table and solution formula.</p>
+<p>But this does not mean that robustness should be reduced to exact formula preservation. <span class="citation" data-cites="schneiderwagemann2012">Schneider and Wagemann (<a href="#ref-schneiderwagemann2012" role="doc-biblioref">2012</a>)</span> make this point in explicitly set-theoretic terms. They argue that robustness tests cannot simply copy the logic found in standard quantitative methods and, instead, has to be assessed in relation to QCA’s own logic of set relations. A solution may be considered robust when alternative specifications produce similar necessary or sufficient conditions, when consistency and coverage remain close enough not to change the substantive interpretation, and when the resulting formulas stand in a clear subset relation to one another. A solution may also change in its Boolean expression while still retaining a meaningful set relation to the original result, preserving its substantive implication, or affecting only marginal cases. Conversely, a formula that appears stable may still conceal fragile case classifications or problematic dependence on a narrow threshold.</p>
+<p>For this reason, robustness in QCA is better appraised and presented as a matter of degree and interpretation than as a simple pass-or-fail property, and the relevant question, beyond “has the result changed?”, is how it changed, under which perturbations, and with what consequences for the cases and claims under scrutiny. This broader understanding is developed most explicitly in the robustness protocol proposed by <span class="citation" data-cites="oanaschneider2024">Oana and Schneider (<a href="#ref-oanaschneider2024" role="doc-biblioref">2024</a>)</span>, which anchors robustness to QCA’s configurational heuristics <span class="citation" data-cites="ragin2014">(<a href="#ref-ragin2014" role="doc-biblioref">Ragin 2014</a>)</span>. Among other contributions, their framework distinguishes between sensitivity ranges <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, fit-oriented robustness <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and case-oriented robustness <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
+<p>This logic is applied pedagogically in <em>Qualitative Comparative Analysis Using R</em> <span class="citation" data-cites="oanathomann2021">(<a href="#ref-oanathomann2021" role="doc-biblioref">Oana et al. 2021</a>)</span>, where robustness assessment is linked to practical implementation in R through the <em>SetMethods</em> package <span class="citation" data-cites="oanaschneider2018">(<a href="#ref-oanaschneider2018" role="doc-biblioref">Oana and Schneider 2018</a>)</span>, which provides an infrastructure for asking, in a demanding and substantively meaningful way, whether an initial solution withstands theoretically plausible adjustments.</p>
+<p>Other perspectives place robustness within the broader requirements of research design and transparency. <span class="citation" data-cites="thomannmaggetti2020">Thomann and Maggetti (<a href="#ref-thomannmaggetti2020" role="doc-biblioref">2020</a>)</span> emphasize that robustness tests should be selected in relation to the type of QCA design, the mode of inference, and the researcher’s degree of case knowledge. A perturbation that is meaningful in a large-N, condition-oriented QCA may not have the same status in a small-N, case-oriented design. <span class="citation" data-cites="schneider2015">Schneider (<a href="#ref-schneider2015" role="doc-biblioref">2015</a>)</span> similarly connects robustness to transparency. Apart from reporting a final solution, researchers should also make visible the data, calibration decisions, truth table choices, and parameters of fit that allow readers to reconstruct the analysis. They further argue that QCA scholars should report meaningful robustness tests showing whether equally plausible analytic decisions would lead to substantively different results. From this standpoint, robustness appraisal is inseparable from transparent and reproducible reporting.</p>
+<h2 data-number="3" id="appraising-qca-robustness"><span class="header-section-number">3</span> Appraising QCA robustness</h2>
+<p><strong><em>qcaERT</em></strong> starts from this methodological background but pursues a complementary purpose. The package does not replace <em>SetMethods</em>, nor does it reproduce its robustness protocol. Whereas <em>SetMethods</em> asks how the initial solution relates to a theoretically plausible space of alternative solutions, <strong><em>qcaERT</em></strong> presents how a monitored result behaves along traceable perturbation paths, preserving the diagnostic record through which instability appears. In other words, it treats robustness appraisal as a highly auditable perturbation workflow.</p>
+<p>First, a baseline QCA analysis is specified; then, selected aspects of the analysis are varied; and, finally, the package records whether, where, and under what conditions the monitored result changes. Its contribution lies in making this process more explicit and informative, a logic that is organized around three diagnostic families: <em>boundary</em>, <em>case-composition</em>, and <em>structured comparison</em>. These families describe three ways of exerting pressure on a QCA result and scrutinizing what happens, as the package emphasizes robustness as a scannable trail of stability.</p>
+<p>The point is not—in any way, shape, or form—to declare a solution robust by automation. The dialogue between ideas and evidence is, canonically, one of QCA’s cornerstones. The purpose of <strong><em>qcaERT</em></strong> is therefore not to replace it with mechanical robustness criteria, but to make that dialogue inspectable; robustness should slow interpretation down, not speed it up.</p>
+<p>The package seeks to help researchers document the behavior of QCA results across perturbations that they judge to be substantively relevant. This record can then support interpretation: some instabilities may reveal serious dependence on theoretical discretion; others may be expected, localized, or substantively unproblematic.</p>
+<h3 data-number="3.1" id="empirical-example"><span class="header-section-number">3.1</span> Empirical example</h3>
+<p>The empirical sections are based on the <em>2025 World Happiness Report</em> data <span class="citation" data-cites="helliwell2025">(<a href="#ref-helliwell2025" role="doc-biblioref">Helliwell et al. 2025</a>)</span>, restricted to observations for 2024. The example should not be read as a theory-driven explanation of national happiness or well-being, for its purpose is entirely practical: to provide a single QCA workflow that is rich enough to expose the different kinds of analytic instability that <strong><em>qcaERT</em></strong> is designed to record.</p>
+<p>The analysis uses the life-evaluation score as the outcome (<code>WELL</code>) across 145 observations and includes five reported components as conditions: log GDP per capita (<code>GDP</code>), social support (<code>SOC</code>), healthy life expectancy (<code>LIFE</code>), freedom to make life choices (<code>FREE</code>), and generosity (<code>GEN</code>).</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Load packages used throughout the examples</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/dusadrian/QCA'>QCA</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/marisguia/qcaERT'>qcaERT</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># [PROVISIONAL DATA STEP]</span></span>
+<span><span class='co'># This load will be replaced with a simple data(whr_raw) once (or if) I get</span></span>
+<span><span class='co'># permission to add the World Happiness Report data to the package</span></span>
+<span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/load.html'>load</a></span><span class='op'>(</span><span class='st'>"whr_raw.RData"</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 data-number="3.2" id="calibration"><span class="header-section-number">3.2</span> Calibration</h3>
+<p>Calibration is the operation through which concepts become sets and cases acquire membership status in those sets. Before a truth table can be built, the researcher must translate raw empirical information into set-theoretic conditions. <em>In an ideal scenario</em>, this means deciding where cases become qualitatively in or out of each set on the basis of conceptual and empirical knowledge. This qualitative breakpoint is central in both crisp and fuzzy calibration: in crisp sets, it produces a binary distinction between membership and nonmembership; in direct fuzzy calibration, it defines the crossover point, where cases move from being more out than in to being more in than out of the set. Direct fuzzy calibration then requires at least two additional anchors, one for full membership and another for full nonmembership.</p>
+<p>These choices could be considered the most critical step in applied QCA. The crossover point is pivotal, since it determines the qualitative status of cases and can change the truth table row to which they belong, which in turn may affect limited diversity, contradictory configurations, row consistency scores and, ultimately, which solution formulas become available for interpretation.</p>
+<p>But this qualitative ideal of informed analyst discretion is not always met. In many applications, the researcher does not know where the relevant calibration thresholds lie. Theory may identify the concept without clear thresholds, and empirical knowledge may be too thin to locate them with confidence. In such situations, <code>QCA::findTh()</code> can be justified to anchor the thresholds <span class="citation" data-cites="dusa2019">(<a href="#ref-dusa2019" role="doc-biblioref">Dusa 2019</a>)</span> in a systematic way. It is also useful for this paper’s illustrative purpose. The chosen example includes direct fuzzy calibration with three and six anchors, indirect fuzzy calibration with ordered cutpoints, and crisp calibration, so that the baseline analysis covers several possible calibration decisions that can later be placed under diagnostic pressure.</p>
+<p>Using these anchors, the raw indicators are therefore calibrated with <code>QCA::calibrate()</code> and then used to construct a truth table and a baseline set of QCA solutions. These baseline solutions become the reference against which <strong><em>qcaERT</em></strong> records changes in subsequent sections.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Get thresholds with the default QCA::findTh() settings</span></span>
+<span><span class='co'># (complete hierarchical clustering and Euclidean distance)</span></span>
+<span><span class='va'>WELL_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>WELL</span>, groups <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
+<span><span class='va'>GDP_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GDP</span>, groups <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span></span>
+<span><span class='va'>SOC_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>SOC</span>, groups <span class='op'>=</span> <span class='fl'>7</span><span class='op'>)</span></span>
+<span><span class='va'>LIFE_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>LIFE</span>, groups <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
+<span><span class='va'>FREE_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>FREE</span>, groups <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span>
+<span><span class='va'>GEN_th</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findTh.html'>findTh</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GEN</span>, groups <span class='op'>=</span> <span class='fl'>4</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Build calibrated data frame</span></span>
+<span><span class='va'>whr_calibrated</span> <span class='op'>&lt;-</span> <span class='va'>whr_raw</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>WELL</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>WELL</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, thresholds <span class='op'>=</span> <span class='va'>WELL_th</span><span class='op'>)</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>GDP</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GDP</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, thresholds <span class='op'>=</span> <span class='va'>GDP_th</span><span class='op'>)</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>SOC</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>SOC</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, thresholds <span class='op'>=</span> <span class='va'>SOC_th</span>, method <span class='op'>=</span> <span class='st'>"indirect"</span><span class='op'>)</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>LIFE</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>LIFE</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, thresholds <span class='op'>=</span> <span class='va'>LIFE_th</span><span class='op'>)</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>FREE</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>FREE</span>, type <span class='op'>=</span> <span class='st'>"crisp"</span>, thresholds <span class='op'>=</span> <span class='va'>FREE_th</span><span class='op'>)</span></span>
+<span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>GEN</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/calibrate.html'>calibrate</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GEN</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, thresholds <span class='op'>=</span> <span class='va'>GEN_th</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 data-number="3.3" id="baseline-qca"><span class="header-section-number">3.3</span> Baseline QCA</h3>
+<p>A substantial step in applied QCA is the analysis of necessity, usually carried out before the assessment of sufficiency. However, because the empirical demonstrations focuses on <strong><em>qcaERT’s</em></strong> diagnostics for sufficient configurations, the appraisal of necessary conditions is omitted from this paper.</p>
+<p>For the baseline sufficiency analysis, the truth table is built through <code>QCA::truthTable()</code>, with <code>incl.cut = 0.90</code> and <code>n.cut = 1</code>, so every configuration with at least one observation and an inclusion score of no less than 0.90 is coded as sufficient for the outcome.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Set conditions and build the baseline truth table</span></span>
+<span><span class='va'>whr_conds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDP"</span>, <span class='st'>"SOC"</span>, <span class='st'>"LIFE"</span>, <span class='st'>"FREE"</span>, <span class='st'>"GEN"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>whr_tt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/truthTable.html'>truthTable</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  complete <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span>  show.cases <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  sort.by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"incl"</span>, <span class='st'>"n"</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The truth table is then minimized with <code>QCA::minimize()</code> under three solution types: conservative, intermediate and parsimonious. In this example, Enhanced Standard Analysis <span class="citation" data-cites="schneiderwagemann2012">(<a href="#ref-schneiderwagemann2012" role="doc-biblioref">Schneider and Wagemann 2012</a>)</span> governs the minimization procedure. The directional expectations for the intermediate solution specify the presence of each condition as contributing to the outcome (<code>dir.exp = whr_solution_dir_exp</code>), while <code>exclude = findRows(whr_tt, type = 2)</code> is applied to both the intermediate and parsimonious minimizations to prevent contradictory simplifying assumptions from entering either process.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Get conservative solution</span></span>
+<span><span class='va'>whr_sol_con</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/minimize.html'>minimize</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_tt</span>,</span>
+<span>  details <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Set directional expectations and get intermediate solution</span></span>
+<span><span class='va'>whr_solution_dir_exp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>whr_sol_int</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/minimize.html'>minimize</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_tt</span>,</span>
+<span>  include <span class='op'>=</span> <span class='st'>"?"</span>,</span>
+<span>  exclude <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findRows.html'>findRows</a></span><span class='op'>(</span><span class='va'>whr_tt</span>, type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  details <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Get parsimonious solutions</span></span>
+<span><span class='va'>whr_sol_par</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/minimize.html'>minimize</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_tt</span>,</span>
+<span>  include <span class='op'>=</span> <span class='st'>"?"</span>,</span>
+<span>  exclude <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findRows.html'>findRows</a></span><span class='op'>(</span><span class='va'>whr_tt</span>, type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>  details <span class='op'>=</span> <span class='cn'>TRUE</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<h3 data-number="3.4" id="presenting-the-solutions"><span class="header-section-number">3.4</span> Presenting the solutions</h3>
+<p>Each of the three minimized objects carry its own solution terms and fit information, which can be displayed neatly with <code>sol.df()</code>, a <strong><em>qcaERT</em></strong> function that reorganizes this material into a single data frame.</p>
+<p>In the call below, the conservative, intermediate, and parsimonious solutions are supplied together, and <code>solution = "all"</code> tells the function to extract every supplied solution type. The result is one row per extracted prime implicant, with columns identifying the solution type, model, intermediate branch when applicable, prime implicant expression, prime-implicant fit, and solution-level fit. Since <code>include_cases = FALSE</code>, case strings are not printed in the table, and <code>digits = 3</code> rounds the numeric fit measures.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Get solutions data frame</span></span>
+<span><span class='va'>whr_solutions_df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/sol.df.html'>sol.df</a></span><span class='op'>(</span></span>
+<span>  conservative <span class='op'>=</span> <span class='va'>whr_sol_con</span>,</span>
+<span>  intermediate <span class='op'>=</span> <span class='va'>whr_sol_int</span>,</span>
+<span>  parsimonious <span class='op'>=</span> <span class='va'>whr_sol_par</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  include_cases <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  digits <span class='op'>=</span> <span class='fl'>3</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>whr_solutions_df</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>      Solution Model Intermediate_CnPn         Prime_Implicants Consistency_PI PRI_PI Raw_Coverage_PI Unique_Coverage_PI Solution_Consistency Solution_PRI Solution_Coverage Cases
+1 Conservative     -                 -            SOC*LIFE*FREE          0.937  0.906           0.813              0.232                0.919        0.879              0.83     -
+2 Conservative     -                 -      ~GDP*LIFE*FREE*~GEN          0.958  0.937           0.581              0.003                0.919        0.879              0.83     -
+3 Conservative     -                 - ~GDP*~SOC*~LIFE*FREE*GEN          0.910  0.138           0.086              0.013                0.919        0.879              0.83     -
+4 Parsimonious     -                 -            SOC*LIFE*FREE          0.937  0.906           0.813              0.232                0.919        0.879              0.83     -
+5 Parsimonious     -                 -      ~GDP*LIFE*FREE*~GEN          0.958  0.937           0.581              0.003                0.919        0.879              0.83     -
+6 Parsimonious     -                 - ~GDP*~SOC*~LIFE*FREE*GEN          0.910  0.138           0.086              0.013                0.919        0.879              0.83     -
+7 Intermediate     -              C1P1            SOC*LIFE*FREE          0.937  0.906           0.813              0.232                0.919        0.879              0.83     -
+8 Intermediate     -              C1P1      ~GDP*LIFE*FREE*~GEN          0.958  0.937           0.581              0.003                0.919        0.879              0.83     -
+9 Intermediate     -              C1P1 ~GDP*~SOC*~LIFE*FREE*GEN          0.910  0.138           0.086              0.013                0.919        0.879              0.83     -</code></pre>
+</div>
+<p><code>sol.df()</code> does not rerun the truth table or the minimization process, only making the baseline result inspectable in a form that can be printed, stored, compared, and passed to <code>sol.chart()</code>, which then renders it as a solution chart. The function reads the already constructed solution table and turns each prime implicant into a visual pattern of condition presence, condition absence, and irrelevance. It then arranges the chart so that related expressions across solution types can be read in the same column.</p>
+<p>Filled circles indicate the presence of a condition, open circles indicate its absence, and empty cells indicate that the condition is not part of the corresponding prime implicant. Black is used for the conservative solution, orange for the intermediate one, and blue for the parsimonious. All colors used in the package are color-blind friendly.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Render the baseline solution chart</span></span>
+<span><span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/sol.chart.html'>sol.chart</a></span><span class='op'>(</span><span class='va'>whr_solutions_df</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="draft-qcaert_files/figure-html5/sol-chart-1.png" alt="" width="100%" /></p>
+</div>
+<p>The chart therefore offers a visual companion to the table, making the structure of the baseline solutions easier to inspect before later sections begin to ask how that structure changes under perturbation.</p>
+<h2 data-number="4" id="boundary-diagnostics"><span class="header-section-number">4</span> Boundary diagnostics</h2>
+<p>Boundary diagnostics examine the points at which analytic thresholds become relevant. <code>calib.test()</code>, <code>incl.test()</code>, and <code>ncut.test()</code> move calibration thresholds, inclusion cutoffs, and frequency cutoffs downward or upward, within admissible limits, until the monitored result changes, the search reaches a boundary, or the analysis fails. <code>altset.test()</code> extends this logic by generating alternative specifications that jointly vary calibration thresholds, inclusion cutoffs, and frequency cutoffs, then records whether the monitored result changes under those combined perturbations.</p>
+<h3 data-number="4.1" id="calibration-1"><span class="header-section-number">4.1</span> Calibration</h3>
+<p>The first boundary diagnostic concerns the calibration thresholds themselves. <code>calib.test()</code> exposes what happens when one threshold used to create a calibrated set is moved while the rest of the QCA specification is held constant.</p>
+<p><code>calib.test()</code> reconstructs the baseline internally by recalibrating the specified condition columns from <code>raw.data</code> according to <code>calib_spec</code>, inserting those columns into <code>calib.data</code>, and applying <code>outcome</code>, <code>conditions</code>, <code>incl.cut</code>, <code>n.cut</code>, the requested solution type, any required directional expectations, and the exclusion rule; each perturbed run is then compared with this reconstructed baseline.</p>
+<p>The function requires both <code>raw.data</code> and <code>calib_spec</code> because the calibrated table records how cases are positioned under the original calibration, while <code>calib_spec</code> supplies the rules for rebuilding those positions after a threshold is moved. Each <code>calib_spec</code> entry identifies the raw column from which the set is produced, the set type, the calibration method, and the threshold values that define the baseline calibration.</p>
+<p>For the examples below, <code>whr_calib_spec_conds</code> records that <code>GDP</code>, <code>LIFE</code>, and <code>GEN</code> use direct fuzzy calibration, <code>SOC</code> uses indirect fuzzy calibration, and <code>FREE</code> uses crisp calibration. These differences determine which threshold positions can be tested: crisp calibration has one threshold, direct fuzzy calibration has either three or six named anchors, and indirect fuzzy calibration is treated as an ordered sequence of cutpoints.</p>
+<p><code>whr_exclude</code> stores the exclusion specification used later when exclusions are recomputed. <code>list(type = 2)</code> is passed to <code>QCA::findRows()</code>, where <code>type = 2</code> identifies one type of untenable assumption. This, of course, is not the only possible recomputation rule. Because <strong><em>qcaERT</em></strong> forwards <code>exclude_recompute</code> to <code>QCA::findRows()</code>, all <code>findRows()</code> types can be used when the analyst supplies a valid specification: <code>type = 0</code> for all untenable assumptions; <code>type = 1</code> for subsets of a supplied expression; <code>type = 2</code> for contradictory simplifying assumptions; and <code>type = 3</code> for simultaneous subset relations.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Store calibration specifications for qcaERT recalibration</span></span>
+<span><span class='va'>whr_calib_spec_conds</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span>  GDP <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='st'>"GDP"</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, method <span class='op'>=</span> <span class='st'>"direct"</span>, thresholds <span class='op'>=</span> <span class='va'>GDP_th</span><span class='op'>)</span>,</span>
+<span>  SOC <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='st'>"SOC"</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, method <span class='op'>=</span> <span class='st'>"indirect"</span>, thresholds <span class='op'>=</span> <span class='va'>SOC_th</span><span class='op'>)</span>,</span>
+<span>  LIFE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='st'>"LIFE"</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, method <span class='op'>=</span> <span class='st'>"direct"</span>, thresholds <span class='op'>=</span> <span class='va'>LIFE_th</span><span class='op'>)</span>,</span>
+<span>  FREE <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='st'>"FREE"</span>, type <span class='op'>=</span> <span class='st'>"crisp"</span>, method <span class='op'>=</span> <span class='st'>"direct"</span>, thresholds <span class='op'>=</span> <span class='va'>FREE_th</span><span class='op'>)</span>,</span>
+<span>  GEN <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>raw <span class='op'>=</span> <span class='st'>"GEN"</span>, type <span class='op'>=</span> <span class='st'>"fuzzy"</span>, method <span class='op'>=</span> <span class='st'>"direct"</span>, thresholds <span class='op'>=</span> <span class='va'>GEN_th</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span></span>
+<span><span class='co'># Add the outcome for when it is also tested</span></span>
+<span><span class='va'>whr_calib_spec_with_outcome</span> <span class='op'>&lt;-</span> <span class='va'>whr_calib_spec_conds</span></span>
+<span></span>
+<span><span class='va'>whr_calib_spec_with_outcome</span><span class='op'>$</span><span class='va'>WELL</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span>  raw <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  type <span class='op'>=</span> <span class='st'>"fuzzy"</span>,</span>
+<span>  method <span class='op'>=</span> <span class='st'>"direct"</span>,</span>
+<span>  thresholds <span class='op'>=</span> <span class='va'>WELL_th</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Store the exclusion rule used in robustness diagnostics</span></span>
+<span><span class='va'>whr_exclude</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The calibration diagnostic perturbs calibration one threshold position at a time. In the example below, <code>test.conditions = whr_conds</code> makes all five conditions eligible for testing, and <code>test.outcome = TRUE</code> adds the calibrated outcome <code>WELL</code> to the same diagnostic. The function can also be used more narrowly: <code>test.conditions = "GDP"</code> would test only one condition, while <code>test.conditions = NULL</code> together with <code>test.outcome = TRUE</code> would test only the outcome.</p>
+<p>For each tested condition or outcome, <strong><em>qcaERT</em></strong> uses the threshold positions implied by its calibration specification. In a direct fuzzy set these positions are calibration anchors; in a crisp set the position is the crisp threshold; in an indirect fuzzy set they are ordered cutpoints. Each position is moved downward and upward in separate searches, while keeping the others constant. Along each direction, the function proposes a new threshold value, checks whether it is admissible, recalibrates the affected set when it is valid, rebuilds the truth table, reruns minimization, and compares the selected solution with its internally reconstructed baseline.</p>
+<p>Because <code>unit_step</code> is not supplied, the size of each movement is computed from the calibration thresholds of the set being tested. For fuzzy sets, <strong><em>qcaERT</em></strong> takes the smallest distance between distinct thresholds and divides it by <code>unit_step_divisor</code>; here, with <code>unit_step_divisor = 10</code>, each move is one tenth of that smallest threshold gap. For crisp sets, the same automatic procedure uses the smaller distance between the threshold and the observed raw-data minimum or maximum, divided by <code>unit_step_divisor</code>.</p>
+<p>A proposed threshold value is used only if it remains inside the observed raw-data range and preserves the ordering required by the calibration method. For example, in a three-anchor direct fuzzy set, the exclusion, crossover, and inclusion anchors must keep their proper order. If the next proposed value would make threshold positions overlap or switch order, the search stops at that feasibility boundary.</p>
+<p>The treatment of excluded rows follows the same convention used in the other diagnostics detailed in this section. With <code>exclude_mode = "recompute"</code>, <strong><em>qcaERT</em></strong> calls <code>QCA::findRows()</code> on each perturbed truth table using the specification stored in <code>exclude_recompute</code>; with <code>exclude_mode = "static"</code>, it reuses the object supplied through <code>exclude_static</code>; and with <code>exclude_mode = "none"</code>, minimization proceeds without an exclusion object.</p>
+<p>Here, with <code>solution = "all"</code> and <code>dir.exp</code> supplied, conservative, parsimonious, and intermediate solutions are monitored separately. They are not collapsed into one combined judgment, so a calibration movement may affect one solution type before another, or stop for different reasons across solution types. The example uses <code>result_shape = "long"</code>, which keeps one row per search and solution type. If the analyst prefers, <code>result_shape = "wide"</code> returns the same information in a wider table, placing one row per calibration search and solution-type-specific quantities in separate columns.</p>
+<p>Calibration testing can be computationally demanding because the function repeatedly rebuilds the QCA workflow across tested sets, threshold positions, directions, steps, and monitored solution types.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Test calibration-threshold sensitivity</span></span>
+<span><span class='va'>whr_calib_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/calib.test.html'>calib.test</a></span><span class='op'>(</span></span>
+<span>  raw.data <span class='op'>=</span> <span class='va'>whr_raw</span>,</span>
+<span>  calib.data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  calib_spec <span class='op'>=</span> <span class='va'>whr_calib_spec_with_outcome</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  test.conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  test.outcome <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  unit_step_divisor <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span>  max_steps <span class='op'>=</span> <span class='fl'>20</span>,</span>
+<span>  result_shape <span class='op'>=</span> <span class='st'>"long"</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Limit the printed table because of size constraints</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>whr_calib_all</span>, max <span class='op'>=</span> <span class='fl'>181</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;calib_test&gt;
+Outcome test: calibration robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Test conditions: GDP, SOC, LIFE, FREE, GEN
+Test outcome: WELL
+Max steps: 20
+
+Result
+ solution_type condition type method anchor direction  start last_safe first_failing step_unit steps total_delta pct_raw_range               reason
+  conservative       GDP    f direct     E1     lower 0.2675    0.0119       -0.0094    0.0213    12     -0.2556     12.603550 feasibility_boundary
+  conservative       GDP    f direct     E1     upper 0.2675    0.4379        0.4592    0.0213     8      0.1704      8.402367  CON:formula_changed
+  conservative       GDP    f direct     C1     lower 0.6790    0.5938        0.5725    0.0213     4     -0.0852      4.201183  CON:formula_changed
+  conservative       GDP    f direct     C1     upper 0.6790    0.7003        0.7216    0.0213     1      0.0213      1.050296  CON:formula_changed
+  conservative       GDP    f direct     I1     lower 0.9595    0.8104        0.7891    0.0213     7     -0.1491      7.352071  CON:formula_changed
+  conservative       GDP    f direct     I1     upper 0.9595    1.1938        1.2151    0.0213    11      0.2343     11.553254 feasibility_boundary
+  conservative       GDP    f direct     I2     lower 1.2025    0.9682        0.9469    0.0213    11     -0.2343     11.553254 feasibility_boundary
+  conservative       GDP    f direct     I2     upper 1.2025    1.3090        1.3303    0.0213     5      0.1065      5.251479  CON:formula_changed
+  conservative       GDP    f direct     C2     lower 1.4155    1.3303        1.3090    0.0213     4     -0.0852      4.201183  CON:formula_changed
+  conservative       GDP    f direct     C2     upper 1.4155    1.4155        1.4368    0.0213     0      0.0000      0.000000  CON:formula_changed
+  conservative       GDP    f direct     E2     lower 1.6580    1.4450        1.4237    0.0213    10     -0.2130     10.502959  CON:formula_changed
+  conservative       GDP    f direct     E2     upper 1.6580    1.9136        1.9349    0.0213    12      0.2556     12.603550  CON:formula_changed
+ [ reached &#39;max&#39; / getOption (&quot;max.print&quot;) -- omitted 120 rows ]
+
+Summary
+ Rows: 132
+ Conditions covered: GDP, SOC, LIFE, FREE, GEN, WELL
+ Bounds are available in x$bounds.</code></pre>
+</div>
+<p>The printed result is a record of these step-by-step searches. <code>start</code> is the baseline threshold value. <code>last_safe</code> is the last value known to preserve the monitored baseline solution, and <code>first_failing</code>, when present, is the first proposed value at which the search could no longer continue as an unchanged solution path. This may happen because the solution changed, the next movement would violate the calibration specification, or the QCA workflow could not be completed. <code>steps</code>, <code>total_delta</code>, and <code>pct_raw_range</code> report how far the search moved before it stopped.</p>
+<p>Finally, the column <code>reason</code> records why the diagnostic stopped. When a search ends because the solution changed, the internal <code>stop_reason</code> is <code>solution_change</code>, but the printed table usually reports the more informative <code>change_kind</code>, such as <code>CON:formula_changed</code> or <code>INT:selected_M_disappeared</code>. Other reasons distinguish calibration feasibility boundaries, exhausted search budgets, truth table construction errors, exclusion-recomputation errors, and minimization errors. Baseline failures use the same logic with a <code>baseline_</code> prefix, indicating that the comparison could not be established before perturbation testing began. The full stopping codes remain available in <code>x$diagnostics</code>.</p>
+<p>The interval plot condenses this larger result for the selected solution type. Threshold positions with short intervals stopped close to their baseline values; positions with longer intervals moved farther before the search stopped. The interpretation still depends on the recorded reason, because a short interval caused by a solution change is different from a short interval caused by the boundary of the calibration specification. When a <code>calib.test</code> object contains more than one solution type, the plot requires the analyst to select which one should be displayed.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Plot calibration intervals for the intermediate solution</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>whr_calib_all</span>, type <span class='op'>=</span> <span class='st'>"interval"</span>, solution_type <span class='op'>=</span> <span class='st'>"int"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="draft-qcaert_files/figure-html5/calib2-plot-1.png" alt="" width="624" /></p>
+</div>
+<h3 data-number="4.2" id="inclusion-cutoff"><span class="header-section-number">4.2</span> Inclusion cutoff</h3>
+<p>Where <code>calib.test()</code> moved the set membership, <code>incl.test()</code> stresses the inclusion cutoff, which determines the truth table rows treated as sufficiently consistent for the outcome and, therefore, which configurations enter the logical minimization process. Generally, raising the threshold narrows the empirical basis of the solution, while lowering it admits more rows, risking weaker sufficiency claims.</p>
+<p>The call below reconstructs the monitored baseline inside <code>incl.test()</code>. Because <code>solution = "all"</code> is combined with <code>exclude_mode = "recompute"</code>, the conservative solution is assessed without exclusions, while the parsimonious and intermediate solutions are monitored with exclusions recomputed from each truth table. This same exclusion convention is used in the remaining boundary diagnostics in this section. The test seeks how far the <code>incl.cut = 0.90</code> decision can be moved, downward or upward, before each selected solution type ceases to match its corresponding internally reconstructed baseline.</p>
+<p>With <code>step = 0.01</code>, and <code>max_steps = 10</code>, <strong><em>qcaERT</em></strong> can inspect cutoffs down to <code>0.80</code> and up to <code>1.00</code>, unless a search stops earlier. At each tested value, it rebuilds the truth table from the same calibrated data, keeps <code>n.cut = 1</code>, applies the same minimization settings, reruns the monitored minimizations, and compares each selected solution type with its own baseline counterpart.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Test inclusion-cutoff sensitivity</span></span>
+<span><span class='va'>whr_incl</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/incl.test.html'>incl.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  step <span class='op'>=</span> <span class='fl'>0.01</span>,</span>
+<span>  max_steps <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span>  result_shape <span class='op'>=</span> <span class='st'>"long"</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>For each solution type and direction, <code>last_safe</code> is the last inclusion cutoff known to preserve the selected baseline solution. If the first tested cutoff already changes the solution or triggers an error, <code>last_safe</code> remains the baseline <code>incl.cut</code>. <code>first_failing</code>, when present, is the next cutoff at which the search stopped because the solution changed, the proposed cutoff fell outside the admissible <code>[0, 1]</code> interval, or the QCA workflow could not be completed. For <code>incl.test()</code>, boundary stops are recorded as <code>search_boundary_lower</code> and <code>search_boundary_upper</code>, while exhausting the allowed number of movements is recorded as <code>search_budget_exhausted</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_incl</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;incl_test&gt;
+Outcome test: incl.cut robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Starting incl.cut: 0.9
+Step size: 0.01
+Max steps: 10
+
+Result
+ solution_type direction start last_safe first_failing steps total_delta              reason
+  conservative     lower   0.9      0.89          0.88     1       -0.01 CON:formula_changed
+  conservative     upper   0.9      0.91          0.92     1        0.01 CON:formula_changed
+  parsimonious     lower   0.9      0.89          0.88     1       -0.01 PAR:formula_changed
+  parsimonious     upper   0.9      0.91          0.92     1        0.01 PAR:formula_changed
+  intermediate     lower   0.9      0.89          0.88     1       -0.01 INT:formula_changed
+  intermediate     upper   0.9      0.91          0.92     1        0.01 INT:formula_changed
+
+Summary
+
+Stable intervals
+ solution_type lower upper width
+           CON  0.89  0.91  0.02
+           PAR  0.89  0.91  0.02
+           INT  0.89  0.91  0.02</code></pre>
+</div>
+<p>All <strong><em>qcaERT</em></strong> test objects can be printed directly, and their main tabular results can be extracted with <code>as.data.frame()</code>. The fuller diagnostic record, including the literal stopping codes, error sources, exclusion counts, and step traces, remains in the object itself, especially in <code>whr_incl$diagnostics</code> and <code>whr_incl$by_direction</code>.</p>
+<p>While the interval plot filters the stored results to the intermediate solution and shows the lower and upper last-safe cutoffs around the baseline value, the two trace plots separate the lower and upper searches, showing which tested cutoff values preserved the selected intermediate solution and where each path stopped.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Plot inclusion-cutoff intervals and traces</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>whr_incl</span>, type <span class='op'>=</span> <span class='st'>"interval"</span>, solution_type <span class='op'>=</span> <span class='st'>"intermediate"</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="draft-qcaert_files/figure-html5/incl-plots-1.png" alt="" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>whr_incl</span>, type <span class='op'>=</span> <span class='st'>"trace"</span>, directions <span class='op'>=</span> <span class='st'>"lower"</span>, solution_type <span class='op'>=</span> <span class='st'>"intermediate"</span><span class='op'>)</span></span></code></pre>
+</div>
+<img src="draft-qcaert_files/figure-html5/incl-plots-2.png" alt="" width="624" />
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>whr_incl</span>, type <span class='op'>=</span> <span class='st'>"trace"</span>, directions <span class='op'>=</span> <span class='st'>"upper"</span>, solution_type <span class='op'>=</span> <span class='st'>"intermediate"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="draft-qcaert_files/figure-html5/incl-plots-3.png" alt="" width="624" /></p>
+</div>
+<h3 data-number="4.3" id="frequency-cutoff"><span class="header-section-number">4.3</span> Frequency cutoff</h3>
+<p>Frequency cutoffs affect a different part of the sufficiency workflow than inclusion. After cases have been assigned to truth table rows and inclusion has been computed, <code>QCA::truthTable()</code> still requires a rule for how many cases must populate a row before that configuration counts as empirically supported, which is provided by (<code>n.cut</code>). Raising the frequency cutoff excludes rare configurations and can reduce the influence of possibly idiosyncratic rows, but it also means that more observed configurations are treated as remainders<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</p>
+<p>The baseline specification used <code>n.cut = 1</code>, so any configuration represented by at least one case could be coded as sufficient for the outcome if its inclusion score reached <code>incl.cut = 0.90</code>.</p>
+<p>The call below questions how the baseline solutions behave when the minimum row frequency is moved away from one case. At each tested value, <strong><em>qcaERT</em></strong> rebuilds the truth table from the same calibrated data, with the same outcome, conditions, and inclusion cutoff, but with a different <code>n.cut</code>. It then applies the same minimization settings and compares the selected conservative, parsimonious, and intermediate results with their own baseline counterparts. Because <code>step = 1</code> and <code>max_steps = 4</code>, the upward search could in principle inspect <code>n.cut</code> values up to five unless the monitored solution changes or the QCA workflow stops earlier.</p>
+<p>In this example, the lower search has no substantive room to move, as <code>n.cut = 1</code> is already the lowest admissible value.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Test frequency-cutoff sensitivity</span></span>
+<span><span class='va'>whr_ncut</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/ncut.test.html'>ncut.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  step <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  max_steps <span class='op'>=</span> <span class='fl'>4</span>,</span>
+<span>  result_shape <span class='op'>=</span> <span class='st'>"long"</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_ncut</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;ncut_test&gt;
+Outcome test: n.cut robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Starting n.cut: 1
+Step size: 1
+Max steps: 4
+Upper limit: 145
+
+Result
+ solution_type direction start last_safe first_failing steps total_delta                reason
+  conservative     lower     1         1             0     0           0 search_boundary_lower
+  conservative     upper     1         1             2     0           0   CON:formula_changed
+  parsimonious     lower     1         1             0     0           0 search_boundary_lower
+  parsimonious     upper     1         1             2     0           0   PAR:formula_changed
+  intermediate     lower     1         1             0     0           0 search_boundary_lower
+  intermediate     upper     1         1             2     0           0   INT:formula_changed
+
+Summary
+
+Stable intervals
+ solution_type lower upper width
+           CON     1     1     0
+           PAR     1     1     0
+           INT     1     1     0</code></pre>
+</div>
+<h3 data-number="4.4" id="alternative-set"><span class="header-section-number">4.4</span> Alternative-set</h3>
+<p>Often, combined movement can produce forms of instability that remain hidden when choices are perturbed one at a time. A calibration threshold may move without changing the solution, and an inclusion cutoff may also be altered without affecting it—but together, the same two perturbations may modify row membership, row inclusion, limited diversity, exclusions, and the minimization result. The alternative-set diagnostic moves beyond the one-dimensional boundary logic used in the previous subsections.</p>
+<p><code>altset.test()</code> broadens it by seeking what happens when several parts of the QCA specification are allowed to vary together. The result is read as behavior across <code>n_draws</code> sampled alternative specifications.</p>
+<p>The function first reconstructs the baseline from <code>calib.data</code>, using the same specifications as the reference analysis. It then uses <code>raw.data</code> and <code>calib_spec</code> to generate alternative calibrated datasets. In the call below, all five conditions are eligible for recalibration through <code>test.conditions = whr_conds</code>, and the outcome is included through <code>test.outcome = TRUE</code>. With no <code>anchors_to_test</code> argument supplied, every anchor implied by each calibration method can be sampled.</p>
+<p>As before, the size of the calibration movement is computed separately for each set, since <code>unit_step</code> is absent and <code>unit_step_divisor = 10</code>. <code>calib_max_steps = 20</code> then limits how far a sampled anchor may move from its baseline value, subject to the raw range and the ordering required by the calibration method. Each draw also samples one inclusion cutoff from the grid generated around <code>incl.cut = 0.90</code> by <code>incl_step = 0.01</code> and <code>incl_max_steps = 10</code>, along with one frequency cutoff from the grid generated around <code>n.cut = 1</code> by <code>ncut_step = 1</code> and <code>ncut_max_steps = 4</code>.</p>
+<p>Candidate calibration movements that would fall outside the observed raw-data range or violate the required threshold ordering are not admitted as completed draws. Among completed draws, a sampled specification is rejected only if it reproduces the baseline across all sampled dimensions. Otherwise, <strong><em>qcaERT</em></strong> recalibrates the sampled sets with <code>QCA::calibrate()</code>, rebuilds the truth table with <code>QCA::truthTable()</code>, applies the same exclusion convention, reruns <code>QCA::minimize()</code>, and compares the selected solutions with the baseline record.</p>
+<p>For this example, <strong><em>qcaERT</em></strong> records, for each draw, which solution types changed, which calibrated sets were moved, whether those sets were conditions or the outcome, and whether comparable fit quantities changed beyond <code>fit_tol = 0.03</code>. The fit tolerance affects only the classification of fit differences; it does not determine whether a Boolean solution expression has changed. <code>n_draws = 20</code> fixes the number of sampled non-baseline specifications, and <code>seed = 2026</code> makes the sampled sequence reproducible.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Sample combined alternative specifications</span></span>
+<span><span class='va'>whr_altset</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/altset.test.html'>altset.test</a></span><span class='op'>(</span></span>
+<span>  raw.data <span class='op'>=</span> <span class='va'>whr_raw</span>,</span>
+<span>  calib.data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  calib_spec <span class='op'>=</span> <span class='va'>whr_calib_spec_with_outcome</span>,</span>
+<span>  test.conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  test.outcome <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span>  unit_step_divisor <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span>  calib_max_steps <span class='op'>=</span> <span class='fl'>20</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  incl_step <span class='op'>=</span> <span class='fl'>0.01</span>,</span>
+<span>  incl_max_steps <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  ncut_step <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  ncut_max_steps <span class='op'>=</span> <span class='fl'>4</span>,</span>
+<span>  n_draws <span class='op'>=</span> <span class='fl'>20</span>,</span>
+<span>  seed <span class='op'>=</span> <span class='fl'>2026</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  fit_tol <span class='op'>=</span> <span class='fl'>0.03</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Limit the printed table because of size constraints</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>whr_altset</span>, max <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;altset_test&gt;
+Outcome test: alternative-set robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Draws: 20
+Baseline incl.cut: 0.9
+Baseline n.cut: 1
+Fit tolerance: 0.03
+Test conditions: GDP, SOC, LIFE, FREE, GEN
+Test outcome: WELL
+
+Result
+ draw incl.cut n.cut         status n_changed_sets                    changed_sets      changed_roles                                                 solution_change fit_changed_types n_fit_deltas max_abs_fit_delta
+    1     0.80     5             ok              6 GDP, SOC, LIFE, FREE, GEN, WELL condition, outcome                                             CON:formula_changed              &lt;NA&gt;            0                NA
+    2     0.85     1             ok              6 GDP, SOC, LIFE, FREE, GEN, WELL condition, outcome CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0                NA
+    3     0.88     1 minimize_error              6 GDP, SOC, LIFE, FREE, GEN, WELL condition, outcome                                                            &lt;NA&gt;              &lt;NA&gt;           NA                NA
+    4     0.89     5 minimize_error              6 GDP, SOC, LIFE, FREE, GEN, WELL condition, outcome                                                            &lt;NA&gt;              &lt;NA&gt;           NA                NA
+    5     0.99     2             ok              6 GDP, SOC, LIFE, FREE, GEN, WELL condition, outcome                                             CON:formula_changed              &lt;NA&gt;            0                NA
+ [ reached &#39;max&#39; / getOption (&quot;max.print&quot;) -- omitted 15 rows ]
+
+Summary
+ Draws: 20
+ Draws with any solution change: 16
+ Draws with any fit change: 0
+ Draws with fit comparison: 0
+
+Solution match rate by solution type
+ solution_type match_rate
+           CON          0
+           PAR          0
+           INT          0</code></pre>
+</div>
+<p>The printed table provides a draw-level audit of sampled alternative specifications. <code>changed_sets</code> and <code>changed_roles</code> identify the calibration component of the sampled perturbation, while <code>incl.cut</code> and <code>n.cut</code> report the threshold choices drawn for truth table construction. <code>solution_change</code> records whether and how the selected solution signatures changed, and the fit columns indicate if matched fit information changed beyond the specified tolerance. The fuller object retains the baseline, detailed diagnostics, and draw-level components in <code>whr_altset$baseline</code>, <code>whr_altset$diagnostics</code>, and <code>whr_altset$by_draw</code>.</p>
+<p>As with the previous diagnostics, this output shows how the monitored QCA results behave across the analyst-defined specification space. Substantive interpretation still depends on whether the sampled movements represent meaningful alternatives for the research problem and if the observed changes affect the claims the researcher wants the QCA solution to support.</p>
+<h2 data-number="5" id="case-composition-diagnostics"><span class="header-section-number">5</span> Case-composition diagnostics</h2>
+<p>Case-composition diagnostics shift the robustness focus from analytic thresholds to the observations that populate the analysis, addressing the dependence of a QCA result on the cases from which it is produced.</p>
+<p>Adding or dropping cases is treated both as a matter of research design and as a possible robustness concern: case selection must be justified in relation to the reference population and scope conditions <span class="citation" data-cites="schneider2015">(<a href="#ref-schneider2015" role="doc-biblioref">Schneider 2015</a>)</span>, and changes to the case pool may alter the configurations available for minimization rather than merely dampening the influence of unusual observations <span class="citation" data-cites="thomannmaggetti2020">(<a href="#ref-thomannmaggetti2020" role="doc-biblioref">Thomann and Maggetti 2020</a>)</span>. The consequences of removing a case are thus not reducible to a generic outlier logic. Some effects on consistency and coverage follow from the type of case removed, but the effect on the solution formula depends on whether the reduced data change truth table rows, thresholds, or remainders <span class="citation" data-cites="schneiderwagemann2012">(<a href="#ref-schneiderwagemann2012" role="doc-biblioref">Schneider and Wagemann 2012</a>)</span>.</p>
+<p>In <strong><em>qcaERT</em></strong>, <code>loo.test()</code> operationalizes this concern as a leave-one-out diagnostic, while <code>subsample.test()</code> extends it to repeated partial-sample checks.</p>
+<h3 data-number="5.1" id="leave-one-out"><span class="header-section-number">5.1</span> Leave-one-out</h3>
+<p>The leave-one-out diagnostic, <code>loo.test()</code>, reconstructs the full-sample baseline and then removes cases one at a time, comparing each reduced analysis with that baseline. Below, because the call does not restrict <code>cases</code>, every observation in <code>whr_calibrated</code> is tested. The case labels reported in the output come from the row names, as no separate <code>case_labels</code> vector is supplied.</p>
+<p>With <code>calib = "recompute"</code>, each reduced analysis removes the corresponding case from both <code>whr_calibrated</code> and <code>raw.data</code>, then rebuilds the calibrated outcome and conditions from the reduced raw dataset according to <code>calib_spec</code>. In the present specification, the stored calibration thresholds are reapplied after each deletion. Because the calibration specification used here contains no “findTh” instructions, the thresholds are not re-estimated with <code>QCA::findTh()</code>. Membership scores may nevertheless change where calibration itself depends on the reduced case pool, as with the indirectly calibrated <code>SOC</code> condition.</p>
+<p>Once the reduced calibrated dataset has been rebuilt, the rest of the sufficiency workflow follows the baseline specification. <code>QCA::truthTable()</code> is called with the same outcome, the same five conditions, <code>incl.cut = 0.90</code>, and <code>n.cut = 1</code>. For parsimonious and intermediate minimization, excluded rows are recomputed from each reduced truth table through <code>QCA::findRows()</code>, using the rule stored in <code>whr_exclude</code>. The minimizations are then rerun with <code>QCA::minimize()</code>; and since <code>solution = "all"</code> and directional expectations are supplied, conservative, parsimonious, and intermediate solutions are monitored as separate comparison targets, preserving the distinction among solution types.</p>
+<p>The comparison proceeds in two steps. <strong><em>qcaERT</em></strong> first contrasts the selected solution signatures from each reduced run with the corresponding full-sample signatures. It then compares the selected fit measures—here <code>inclS</code>, <code>PRI</code>, and <code>covS</code>. The tolerance <code>fit_tol = 0.03</code> applies only to the fit comparison. Boolean-expression changes are determined separately through signature comparison.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Run leave-one-out diagnostics</span></span>
+<span><span class='va'>whr_loo</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/loo.test.html'>loo.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  calib <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  raw.data <span class='op'>=</span> <span class='va'>whr_raw</span>,</span>
+<span>  calib_spec <span class='op'>=</span> <span class='va'>whr_calib_spec_with_outcome</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  fit_measures <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"inclS"</span>, <span class='st'>"PRI"</span>, <span class='st'>"covS"</span><span class='op'>)</span>,</span>
+<span>  fit_tol <span class='op'>=</span> <span class='fl'>0.03</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The table provides a case-by-case record of how each deletion affects the monitored workflow. <code>status</code> indicates whether the reduced analysis could be compared with the baseline. <code>solution_change</code> identifies changes in selected solution expressions, while <code>fit_changed_types</code>, <code>n_fit_deltas</code>, and <code>max_abs_fit_delta</code> summarize movement in the monitored fit measures.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Limit the printed table because of size constraints</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>whr_loo</span>, max <span class='op'>=</span> <span class='fl'>60</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;loo_test&gt;
+Outcome test: leave-one-out robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Cases tested: 145
+Fit measures: inclS, PRI, covS
+
+Result
+ row_index  case_label status                                                 solution_change fit_changed_types n_fit_deltas max_abs_fit_delta
+         1 Afghanistan     ok CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0                 0
+         2     Albania     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         3     Algeria     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         4   Argentina     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         5     Armenia     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         6   Australia     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         7     Austria     ok                                                            &lt;NA&gt;              &lt;NA&gt;            0                 0
+         8  Azerbaijan     ok CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0                 0
+ [ reached &#39;max&#39; / getOption (&quot;max.print&quot;) -- omitted 137 rows ]
+
+Summary
+ Successful runs: 145/145
+ Solution changes: 8
+ Fit changes: 1
+ Non-ok runs: 0
+ Cases with solution changes: Afghanistan, Azerbaijan, Bangladesh, Benin, Ethiopia, Kosovo, Somalia, Türkiye</code></pre>
+</div>
+<p>The diagnostic documents the effects of case deletion, showing whether removing each case changes the monitored QCA result and where that change appears in the recorded workflow. The fuller record remains in <code>whr_loo$diagnostics</code> and <code>whr_loo$by_case</code>, where the reduced run, recalibration record, exclusions, solution comparison, and fit deltas can be inspected for any specific observation.</p>
+<h3 data-number="5.2" id="subsample"><span class="header-section-number">5.2</span> Subsample</h3>
+<p><code>subsample.test()</code> applies the same logic to a more demanding case-composition diagnostic by repeatedly rebuilding the analysis from partial samples and recording how often the monitored solution is preserved.</p>
+<p>It is important to emphasize that <em>the function should not be seen as an attempt to import a statistical bootstrap logic into QCA</em>. It provides an audit-oriented stress test whose interpretation must remain design-sensitive, being best understood as a stringent diagnostic of sample-composition sensitivity—in small-N, case-oriented QCA, partial-sample reconstruction would be substantively uninformative; whereas in larger-N or condition-oriented analyses it can help researchers assess whether the solution depends on the full case pool and the configurations it populates.</p>
+<p>With that in mind, the call below draws ten subsamples without replacement. With <code>sample_prop = 0.8</code>, the realized subsample size is computed as <code>round(0.8 * nrow(whr_calibrated))</code>; in the present data, this corresponds to 116 sampled observations and 29 held-out observations per replication.</p>
+<p>The subsamples are stratified by a user-defined grouping. For the purpose of this diagnostic, <code>strata</code> classifies cases by their position relative to the outcome crossover: cases with <code>WELL &gt;= 0.5</code> are assigned to <code>high_WELL</code>, and cases with <code>WELL &lt; 0.5</code> are assigned to <code>low_WELL</code>. With <code>stratify = "user"</code>, <strong><em>qcaERT</em></strong> draws proportionally from these supplied groups, preserving the high/low outcome composition as closely as the integer subsample size permits. With the present group sizes, this allocation retains cases from both sides of the crossover in every replication, preventing an 80% draw from overrepresenting either high- or low-membership cases by chance. The procedure differs in principle from <code>stratify = "outcome"</code>, which uses a crisp outcome itself as the source of stratification.</p>
+<p>For each sampled dataset, <strong><em>qcaERT</em></strong> reconstructs the analysis from sampled raw rows. With <code>calib = "recompute"</code>, the same sampled cases are drawn from <code>raw.data</code>, and the calibrated outcome and conditions are rebuilt from the sampled raw data according to <code>calib_spec</code>. As in the leave-one-out diagnostic, the stored calibration thresholds are reapplied here; re-estimation with <code>QCA::findTh()</code> occurs only when the calibration specification contains <code>findTh</code> instructions. Membership scores may still vary when the calibration method is itself estimated from the sampled data, as with the indirectly calibrated <code>SOC</code> condition.</p>
+<p>The reconstructed subsample is then passed through the same sufficiency workflow used for the full-sample baseline. <code>QCA::truthTable()</code> is called with the same outcome, conditions, <code>incl.cut = 0.90</code>, and <code>n.cut = 1</code>. Under <code>exclude_mode = "recompute"</code>, excluded rows are recomputed from each subsample truth table through <code>QCA::findRows()</code>, and the minimizations are rerun with <code>QCA::minimize()</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Define strata around the outcome crossover</span></span>
+<span><span class='va'>strata</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>whr_calibrated</span><span class='op'>$</span><span class='va'>WELL</span> <span class='op'>&gt;=</span> <span class='fl'>0.5</span>, <span class='st'>"high_WELL"</span>, <span class='st'>"low_WELL"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Run repeated subsample diagnostics</span></span>
+<span><span class='va'>whr_subsample</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/subsample.test.html'>subsample.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  calib <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  raw.data <span class='op'>=</span> <span class='va'>whr_raw</span>,</span>
+<span>  calib_spec <span class='op'>=</span> <span class='va'>whr_calib_spec_with_outcome</span>,</span>
+<span>  sample_prop <span class='op'>=</span> <span class='fl'>0.8</span>,</span>
+<span>  reps <span class='op'>=</span> <span class='fl'>10</span>,</span>
+<span>  stratify <span class='op'>=</span> <span class='st'>"user"</span>,</span>
+<span>  strata <span class='op'>=</span> <span class='va'>strata</span>,</span>
+<span>  seed <span class='op'>=</span> <span class='fl'>2026</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span>,</span>
+<span>  fit_measures <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"inclS"</span>, <span class='st'>"PRI"</span>, <span class='st'>"covS"</span><span class='op'>)</span>,</span>
+<span>  fit_tol <span class='op'>=</span> <span class='fl'>0.02</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The comparison records formula preservation and fit movement. <code>exact_match_baseline</code> indicates whether the selected solution signatures in a subsample match the full-sample baseline. The fit columns compare <code>inclS</code>, <code>PRI</code>, and <code>covS</code>, with a fit change recorded, here, only when the difference exceeds <code>fit_tol = 0.02</code>.</p>
+<p><code>term_jaccard_baseline</code> summarizes how much of the baseline term inventory reappears in the subsample result. <strong><em>qcaERT</em></strong> extracts the selected solution terms from the monitored solution types, forms the set of distinct terms, and computes the ratio of shared terms to all terms appearing in either the baseline or the subsample. It should be interpreted only as a compact term-level resemblance measure, without implying subset relations, fit, or substantive equivalence.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_subsample</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;subsample_test&gt;
+Outcome test: subsample robustness
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Replications: 10
+Sample size: 116
+Sample proportion: 0.8
+Stratification: user
+Fit measures: inclS, PRI, covS
+
+Result
+ rep n_sample n_holdout status exact_match_baseline term_jaccard_baseline                                                 solution_change fit_changed_types n_fit_deltas max_abs_fit_delta
+   1      116        29     ok                FALSE             0.6666667 CON:formula_changed | PAR:formula_changed | INT:formula_changed   CON | PAR | INT            6        0.02296898
+   2      116        29     ok                FALSE             0.3333333 CON:formula_changed | PAR:formula_changed | INT:formula_changed   CON | PAR | INT            3        0.03203495
+   3      116        29     ok                FALSE             0.2000000 CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0        0.00000000
+   4      116        29     ok                FALSE             0.2000000 CON:formula_changed | PAR:formula_changed | INT:formula_changed         CON | INT            2        0.02553135
+   5      116        29     ok                FALSE             0.3333333 CON:formula_changed | PAR:formula_changed | INT:formula_changed   CON | PAR | INT            6        0.02977214
+   6      116        29     ok                FALSE             0.6666667 CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0        0.00000000
+   7      116        29     ok                FALSE             0.2000000 CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0        0.00000000
+   8      116        29     ok                FALSE             0.5000000                       PAR:formula_changed | INT:formula_changed         PAR | INT            9                NA
+   9      116        29     ok                FALSE             0.5000000 CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0        0.00000000
+  10      116        29     ok                FALSE             0.6666667 CON:formula_changed | PAR:formula_changed | INT:formula_changed              &lt;NA&gt;            0        0.00000000
+
+Summary
+ Successful runs: 10/10
+ Runs with any solution change: 10
+ Runs with any fit change: 5
+ Non-ok runs: 0
+ Mean combined term-set Jaccard vs baseline: 0.4266667
+
+Exact baseline matches by solution type
+ solution_type exact successful proportion
+           CON     1         10        0.1
+           PAR     0         10        0.0
+           INT     0         10        0.0</code></pre>
+</div>
+<p>The table gives one row per subsample replication, reporting the realized sample and holdout sizes, run status, exact-match indicator, term-resemblance score, solution-change classification, and fit-change summary. The fuller evidence remains in <code>whr_subsample$summary</code> and <code>whr_subsample$by_run</code>. The summary stores exact-match rates, term stability, fit stability, similarity measures, and calibration summaries, while each run records the sampled and held-out cases, strata counts, recalibration details, exclusions, solution comparison, and fit deltas.</p>
+<h2 data-number="6" id="structured-comparison-diagnostics"><span class="header-section-number">6</span> Structured comparison diagnostics</h2>
+<p>Structured comparison diagnostics address situations in which the relevant perturbation takes the form of a structured alternative to the baseline analysis instead of movement along a single threshold or case dimension. While <code>cluster.test()</code> examines whether the baseline result behaves similarly across groups, clusters, or repeated units, <code>theory.test()</code> extends structured comparison to theoretically motivated specifications.</p>
+<h3 data-number="6.1" id="cluster-heterogeneity"><span class="header-section-number">6.1</span> Cluster heterogeneity</h3>
+<p><code>cluster.test()</code> begins with the pooled QCA result to uncover whether the selected configurations have similar empirical standing across substantively defined groups. The concern is that a pooled sufficiency claim may conceal heterogeneity, with a configuration appearing consistent or well covered in the aggregate while being concentrated in, or driven by, one part of the case pool.</p>
+<p>In the example below, the grouping variable is constructed from the raw GDP contribution. Cases at or above the median are assigned to the higher-GDP group, and cases below the median are assigned to the lower-GDP group. This grouping functions solely as a comparison device, exposing if the pooled configurations extracted from the baseline truth table display different consistency and coverage patterns across the two groups.</p>
+<p>Because the truth table is built before <code>cluster.test()</code> is called, the function operates from a supplied <code>QCA::truthTable()</code> object instead of reconstructing the workflow internally. This marks an important difference from the preceding diagnostics, since <code>cluster.test()</code> takes the pooled truth table as given, minimizes it under the requested solution controls, extracts the selected configurations from the resulting <code>QCA::minimize()</code> objects, and computes the fit of those same configurations within each cluster.</p>
+<p>The same design explains how exclusions are handled. The perturbation diagnostics use <code>exclude_mode</code> and <code>exclude_recompute</code> to determine how exclusions are recalculated during workflow reconstruction; <code>cluster.test()</code> receives an already constructed truth table, so exclusions are passed directly to <code>QCA::minimize()</code>. Here, <code>exclude = QCA::findRows(whr_tt_cluster, type = 2)</code> applies the same exclusion rule used in the baseline intermediate and parsimonious minimizations.</p>
+<p>In this example, for each selected configuration, <strong><em>qcaERT</em></strong> computes pooled consistency and coverage and then recomputes those fit quantities separately inside each <code>GDP_group</code>. The resulting deltas measure how far each group-specific fit value lies from the pooled value. When the selected result contains multiple solution terms, the diagnostic also stores term-level rows, so that heterogeneity can be inspected both for the selected result as a whole and, where applicable, for its component terms.</p>
+<p>Since <code>GDP_group</code> is used only as a grouping variable, the diagnostic is limited to between-cluster comparisons. <code>cluster.test()</code> also accepts a <code>unit_id</code> argument when the same unit appears in more than one cluster, in which case <strong><em>qcaERT</em></strong> can compute within-unit fit diagnostics for the selected pooled configurations.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_cluster</span> <span class='op'>&lt;-</span> <span class='va'>whr_calibrated</span></span>
+<span></span>
+<span><span class='co'># Define a grouping variable for cluster comparison</span></span>
+<span><span class='va'>whr_cluster</span><span class='op'>$</span><span class='va'>GDP_group</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GDP</span> <span class='op'>&gt;=</span> <span class='fu'><a href='https://rdrr.io/r/stats/median.html'>median</a></span><span class='op'>(</span><span class='va'>whr_raw</span><span class='op'>$</span><span class='va'>GDP</span><span class='op'>)</span>,</span>
+<span>  <span class='st'>"high GDP contribution"</span>,</span>
+<span>  <span class='st'>"low GDP contribution"</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Build the truth table supplied to cluster.test()</span></span>
+<span><span class='va'>whr_tt_cluster</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/truthTable.html'>truthTable</a></span><span class='op'>(</span></span>
+<span>  <span class='va'>whr_cluster</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  conditions <span class='op'>=</span> <span class='va'>whr_conds</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.9</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  complete <span class='op'>=</span> <span class='cn'>TRUE</span>,</span>
+<span>  show.cases <span class='op'>=</span> <span class='cn'>FALSE</span>,</span>
+<span>  sort.by <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"incl"</span>, <span class='st'>"n"</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Compare pooled configurations across GDP groups</span></span>
+<span><span class='va'>whr_cluster_test</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/cluster.test.html'>cluster.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_cluster</span>,</span>
+<span>  tt <span class='op'>=</span> <span class='va'>whr_tt_cluster</span>,</span>
+<span>  cluster_id <span class='op'>=</span> <span class='st'>"GDP_group"</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  exclude <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/pkg/QCA/man/findRows.html'>findRows</a></span><span class='op'>(</span><span class='va'>whr_tt_cluster</span>, type <span class='op'>=</span> <span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_solution_dir_exp</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The returned object is structured differently from the preceding diagnostics because the evidence has more than one natural table. <code>whr_cluster_test$results$overview</code> gives one row per selected configuration, including pooled fit, the largest cluster-level deviations, and the clusters where those deviations occur. <code>whr_cluster_test$results$clusters</code> gives the cluster-level consistency and coverage values themselves, including component-level rows when a selected configuration has multiple terms. The fuller records remain in <code>whr_cluster_test$diagnostics</code> and <code>whr_cluster_test$by_cluster</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_cluster_test</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;cluster_test&gt;
+Outcome test: cluster heterogeneity
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: all
+Cluster id: GDP_group
+Necessity mode: FALSE
+
+Overview
+ solution_type                                                           configuration status pooled_cons pooled_cov worst_consistency_cluster max_delta_cons worst_coverage_cluster max_delta_cov  within_units
+           CON conservative:~GDP*~SOC*~LIFE*FREE*GEN+~GDP*LIFE*FREE*~GEN+SOC*LIFE*FREE     ok       0.919      0.830      low GDP contribution          0.069   low GDP contribution         0.142 not available
+           PAR parsimonious:~GDP*~SOC*~LIFE*FREE*GEN+~GDP*LIFE*FREE*~GEN+SOC*LIFE*FREE     ok       0.919      0.830      low GDP contribution          0.069   low GDP contribution         0.142 not available
+           INT         C1P1:~GDP*~SOC*~LIFE*FREE*GEN+~GDP*LIFE*FREE*~GEN+SOC*LIFE*FREE     ok       0.919      0.830      low GDP contribution          0.069   low GDP contribution         0.142 not available
+
+Summary
+ Configurations evaluated: 3
+ Successful configurations: 3
+ Non-ok configurations: 0
+ Detailed tables: x$results$overview, x$results$clusters</code></pre>
+</div>
+<p>Large cluster differences should not be read as an instant rejection of the pooled solution, as they only indicate that the empirical support for a pooled configuration is uneven across the grouping variable supplied by the researcher. The interpretive question is then whether that unevenness is theoretically expected, substantively informative, or a warning that the pooled sufficiency claim is hiding group-specific patterns.</p>
+<h3 data-number="6.2" id="theory-comparison"><span class="header-section-number">6.2</span> Theory comparison</h3>
+<p>Theory comparison moves the structured-comparison to whether theory-defined specifications produce similar sufficiency results when they are analyzed under the same outcome and the same truth table and minimization settings. In this sense, it treats condition selection itself as the object of diagnostic inspection.</p>
+<p>The three specifications below define alternative theory-based condition sets for the same outcome. The “material-welfare” specification uses <code>GDP</code>, <code>LIFE</code>, and <code>SOC</code>; the “institutional-quality” specification uses <code>GDP</code> and <code>FREE</code>; and the “social-capital” specification uses <code>SOC</code>, <code>GEN</code>, and <code>FREE</code>. These condition sets may overlap, but <strong><em>qcaERT</em></strong> does not merge them into a single pooled condition space. Each theory is analyzed as its own QCA model, with its own truth table constructed from the conditions assigned to that theory.</p>
+<p>The directional expectations are therefore also supplied by theory. Each element of <code>whr_theory_dir_exp</code> corresponds to the conditions in the matching element of <code>whr_theories</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Define theory-specific condition sets</span></span>
+<span><span class='va'>whr_theories</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span>  material_welfare <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDP"</span>, <span class='st'>"LIFE"</span>, <span class='st'>"SOC"</span><span class='op'>)</span>,</span>
+<span>  institutional_quality <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"GDP"</span>, <span class='st'>"FREE"</span><span class='op'>)</span>,</span>
+<span>  social_capital <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"SOC"</span>, <span class='st'>"GEN"</span>, <span class='st'>"FREE"</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span>
+<span></span>
+<span><span class='co'># Match directional expectations to each theory</span></span>
+<span><span class='va'>whr_theory_dir_exp</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span></span>
+<span>  material_welfare <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span><span class='op'>)</span>,</span>
+<span>  institutional_quality <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"1"</span><span class='op'>)</span>,</span>
+<span>  social_capital <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"1"</span>, <span class='st'>"1"</span>, <span class='st'>"1"</span><span class='op'>)</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p><code>theory.test()</code> then holds the main analytic settings constant while allowing the condition set to vary by theory. For each theory, <strong><em>qcaERT</em></strong> calls <code>QCA::truthTable()</code> with the same calibrated outcome, <code>WELL</code>, the same inclusion cutoff, <code>incl.cut = 0.90</code>, and the same frequency cutoff, <code>n.cut = 1</code>, but with only the conditions named in that theory. Since the number and identity of conditions differ across the three specifications, the resulting truth tables may differ in their number of rows, observed configurations, remainders, and rows available for minimization.</p>
+<p>The exclusion rule is also applied inside each theory-specific truth table. Once again, with <code>exclude_mode = "recompute"</code>, the rows excluded from parsimonious and intermediate minimization are not borrowed from a larger baseline truth table. They are recomputed separately through <code>QCA::findRows()</code>, using the rule stored in <code>whr_exclude</code>, after each theory-specific truth table has been built. The minimizations are then rerun with <code>QCA::minimize()</code>. The default intermediate-branch setting in <code>theory.test()</code> is <code>i_mode = "C1P1"</code>, so the comparison normally records one selected intermediate branch per theory unless the function is explicitly asked to retain all branches.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Compare theory-specific QCA models</span></span>
+<span><span class='va'>whr_theory</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/pkg/qcaERT/man/theory.test.html'>theory.test</a></span><span class='op'>(</span></span>
+<span>  data <span class='op'>=</span> <span class='va'>whr_calibrated</span>,</span>
+<span>  outcome <span class='op'>=</span> <span class='st'>"WELL"</span>,</span>
+<span>  incl.cut <span class='op'>=</span> <span class='fl'>0.85</span>,</span>
+<span>  n.cut <span class='op'>=</span> <span class='fl'>1</span>,</span>
+<span>  theories <span class='op'>=</span> <span class='va'>whr_theories</span>,</span>
+<span>  solution <span class='op'>=</span> <span class='st'>"all"</span>,</span>
+<span>  dir.exp <span class='op'>=</span> <span class='va'>whr_theory_dir_exp</span>,</span>
+<span>  exclude_mode <span class='op'>=</span> <span class='st'>"recompute"</span>,</span>
+<span>  exclude_recompute <span class='op'>=</span> <span class='va'>whr_exclude</span></span>
+<span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The model table reports the theory-level idiosyncrasies of these separate workflows. For each theory and monitored solution type, it records the size of the condition set, the truth table structure, the number of excluded rows used for parsimonious or intermediate minimization, the selected model, the number of selected solution terms, and the corresponding consistency, PRI, and coverage values. This table is therefore the first place to inspect whether two theories differ because their selected solutions fit the outcome differently, because their truth tables have different empirical structure, or because one of the theory-specific runs failed to produce a comparable selected solution.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_theory</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>&lt;theory_test&gt;
+qcaERT theory-specification test
+
+Outcome: WELL
+Theories tested: 3
+  material_welfare: GDP, LIFE, SOC
+  institutional_quality: GDP, FREE
+  social_capital: SOC, GEN, FREE
+
+Solution: all
+Monitored solutions: conservative, parsimonious, intermediate
+which_M: 1
+i_mode: C1P1
+
+Truth-table settings:
+  incl.cut: 0.85
+  n.cut: 1
+
+Run status:
+  material_welfare: ok
+  institutional_quality: ok
+  social_capital: ok
+
+Solutions
+                theory solution_type intermediate_branch prime_implicant inclS   PRI  covS
+      material_welfare  conservative                &lt;NA&gt;        ~GDP*SOC 0.915 0.876 0.722
+      material_welfare  conservative                &lt;NA&gt;            LIFE 0.870 0.812 0.838
+      material_welfare  parsimonious                &lt;NA&gt;        ~GDP*SOC 0.915 0.876 0.722
+      material_welfare  parsimonious                &lt;NA&gt;            LIFE 0.870 0.812 0.838
+      material_welfare  intermediate                C1P1        ~GDP*SOC 0.915 0.876 0.722
+      material_welfare  intermediate                C1P1            LIFE 0.870 0.812 0.838
+ institutional_quality  conservative                &lt;NA&gt;       ~GDP*FREE 0.859 0.803 0.724
+ institutional_quality  parsimonious                &lt;NA&gt;       ~GDP*FREE 0.859 0.803 0.724
+ institutional_quality  intermediate                C1P1       ~GDP*FREE 0.859 0.803 0.724
+        social_capital  conservative                &lt;NA&gt;        GEN*FREE 0.862 0.700 0.250
+        social_capital  conservative                &lt;NA&gt;        SOC*FREE 0.844 0.775 0.961
+        social_capital  parsimonious                &lt;NA&gt;        GEN*FREE 0.862 0.700 0.250
+        social_capital  parsimonious                &lt;NA&gt;        SOC*FREE 0.844 0.775 0.961
+        social_capital  intermediate                C1P1        GEN*FREE 0.862 0.700 0.250
+        social_capital  intermediate                C1P1        SOC*FREE 0.844 0.775 0.961
+
+Tables:
+  as.data.frame(x) or x$results$models: model-level diagnostics (9 rows)
+  x$results$solutions: extracted solution terms (15 rows)
+  x$results$pairwise: pairwise theory comparisons (9 rows)
+  x$diagnostics: raw per-theory solution_type diagnostics (9 rows)
+  x$by_theory: truth tables, exclusions, and minimization objects</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_theory</span><span class='op'>$</span><span class='va'>results</span><span class='op'>$</span><span class='va'>models</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>                 theory solution_type intermediate_branch status n_conditions n_tt_rows n_observed_rows n_remainders n_excluded n_models selected_model n_terms     inclS       PRI      covS
+1      material_welfare  conservative                &lt;NA&gt;     ok            3         8               8            0          0        1              1       2 0.8406318 0.7691316 0.9049942
+2      material_welfare  parsimonious                &lt;NA&gt;     ok            3         8               8            0          0        1              1       2 0.8406318 0.7691316 0.9049942
+3      material_welfare  intermediate                C1P1     ok            3         8               8            0          0        1              1       2 0.8406318 0.7691316 0.9049942
+4 institutional_quality  conservative                &lt;NA&gt;     ok            2         4               4            0          0        1              1       1 0.8589127 0.8030178 0.7239873
+5 institutional_quality  parsimonious                &lt;NA&gt;     ok            2         4               4            0          0        1              1       1 0.8589127 0.8030178 0.7239873
+6 institutional_quality  intermediate                C1P1     ok            2         4               4            0          0        1              1       1 0.8589127 0.8030178 0.7239873
+7        social_capital  conservative                &lt;NA&gt;     ok            3         8               6            2          0        1              1       2 0.8319257 0.7591021 0.9609000
+8        social_capital  parsimonious                &lt;NA&gt;     ok            3         8               6            2          2        1              1       2 0.8319257 0.7591021 0.9609000
+9        social_capital  intermediate                C1P1     ok            3         8               6            2          2        1              1       2 0.8319257 0.7591021 0.9609000</code></pre>
+</div>
+<p>The pairwise table shifts the comparison from model summaries to the case memberships produced by the selected solutions. For each pair of theories, matched by solution type and, for intermediate solutions, by branch, <strong><em>qcaERT</em></strong> extracts the selected solution membership scores and compares them across cases. <code>membership_jaccard</code> is a fuzzy-set overlap measure: it sums the casewise minima of the two selected-solution membership vectors and divides that value by the sum of the casewise maxima. A value of <code>1</code> means that the two theory-specific selected solutions assign identical membership scores to the aligned cases. <code>mean_abs_membership_delta</code> reports the average absolute difference between those same membership scores. The fit-difference columns report the second theory’s selected-solution fit value minus the first theory’s selected-solution fit value.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>whr_theory</span><span class='op'>$</span><span class='va'>results</span><span class='op'>$</span><span class='va'>pairwise</span></span></code></pre>
+</div>
+<pre class="r-output-scroll"><code>  solution_type intermediate_branch              theory_1              theory_2  delta_inclS   delta_PRI  delta_covS membership_jaccard mean_abs_membership_delta
+1  conservative                &lt;NA&gt;      material_welfare institutional_quality  0.018280829  0.03388621 -0.18100693          0.7234183                 0.1905920
+2  conservative                &lt;NA&gt;      material_welfare        social_capital -0.008706142 -0.01002952  0.05590578          0.7809184                 0.1698503
+3  conservative                &lt;NA&gt; institutional_quality        social_capital -0.026986971 -0.04391573  0.23691271          0.6325922                 0.2781908
+4  parsimonious                &lt;NA&gt;      material_welfare institutional_quality  0.018280829  0.03388621 -0.18100693          0.7234183                 0.1905920
+5  parsimonious                &lt;NA&gt;      material_welfare        social_capital -0.008706142 -0.01002952  0.05590578          0.7809184                 0.1698503
+6  parsimonious                &lt;NA&gt; institutional_quality        social_capital -0.026986971 -0.04391573  0.23691271          0.6325922                 0.2781908
+7  intermediate                C1P1      material_welfare institutional_quality  0.018280829  0.03388621 -0.18100693          0.7234183                 0.1905920
+8  intermediate                C1P1      material_welfare        social_capital -0.008706142 -0.01002952  0.05590578          0.7809184                 0.1698503
+9  intermediate                C1P1 institutional_quality        social_capital -0.026986971 -0.04391573  0.23691271          0.6325922                 0.2781908</code></pre>
+</div>
+<p>These pairwise quantities should not be interpreted as term-overlap measures. Two theories may produce differently written solution expressions while assigning similar memberships to cases, and they may also produce apparently similar expressions whose membership consequences differ because the underlying condition sets are not the same.</p>
+<p>In the plot, with <code>solution_type = "intermediate"</code>, each theory is placed by the consistency and coverage of its selected intermediate solution. If a <code>theory_test</code> object contains more than one intermediate branch, the branch to be displayed must be supplied through <code>intermediate_branch</code>.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='co'># Plot selected theory models in consistency-coverage space</span></span>
+<span><span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span><span class='va'>whr_theory</span>, solution_type <span class='op'>=</span> <span class='st'>"intermediate"</span><span class='op'>)</span></span></code></pre>
+</div>
+<p><img src="draft-qcaert_files/figure-html5/theory-plot-1.png" alt="" width="768" /></p>
+</div>
+<p>The diagnostic evidence produced by <code>theory.test()</code> is purely of comparative nature, not intended to be adjudicative. It shows how alternative theory-defined condition sets behave when passed through the same QCA workflow, and it makes visible where differences arise. It does not decide which theory is correct, nor does it establish that one specification is substantively preferable.</p>
+<h2 data-number="7" id="conclusion"><span class="header-section-number">7</span> Conclusion</h2>
+<p><strong><em>qcaERT</em></strong> treats QCA robustness appraisal as an accountable record of perturbation and structured comparison within the analytic workflow. <em>For calibration thresholds and truth table cutoffs</em>, it traces controlled movement away from the reference specification, recording the last specification that still preserves the monitored result, the first specification at which that result changes when such a boundary is reached, and the reason the search path stops. <em>For case-composition diagnostics</em>, it documents whether deleting individual cases or drawing partial samples changes selected solution signatures or monitored fit quantities relative to the full-sample baseline. And, <em>for structured comparisons</em>, it identifies clusters whose consistency or coverage depart most from the pooled result and compares selected-solution memberships across theory-specific models.</p>
+<p>These diagnostics make the behavior of QCA results visible under analytically meaningful pressure, while leaving the analyst responsible for judging the substantive acceptability of those movements, the theoretical plausibility of the tested alternatives, and the implications of solution changes for the causal claim being advanced.</p>
+<p>The broader aim is to make robustness appraisal more transparent and thorough while remaining aligned with the epistemological presuppositions of QCA. By recording perturbations and comparisons at the point where QCA results are produced, <strong><em>qcaERT</em></strong> gives researchers a way to report a solution alongside its behavior across the decisions that shaped it. The resulting record gives researchers, readers and peers a clearer basis for evaluating the choices made, thereby strengthening confidence in both the results and the research design as a whole.</p>
+<h3 class="appendix" data-number="7.1" id="cran-packages-used"><span class="header-section-number">7.1</span> CRAN packages used</h3>
+<p><a href="https://cran.r-project.org/package=QCA">QCA</a>, <a href="https://cran.r-project.org/package=qcaERT">qcaERT</a>, <a href="https://cran.r-project.org/package=ggplot2">ggplot2</a></p>
+<h3 class="appendix" data-number="7.2" id="cran-task-views-implied-by-cited-packages"><span class="header-section-number">7.2</span> CRAN Task Views implied by cited packages</h3>
+<p><a href="https://cran.r-project.org/view=ChemPhys">ChemPhys</a>, <a href="https://cran.r-project.org/view=NetworkAnalysis">NetworkAnalysis</a>, <a href="https://cran.r-project.org/view=Phylogenetics">Phylogenetics</a>, <a href="https://cran.r-project.org/view=Spatial">Spatial</a>, <a href="https://cran.r-project.org/view=TeachingStatistics">TeachingStatistics</a></p>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-dusa2019" class="csl-entry" role="listitem">
+A. Dusa. <em><span>QCA</span> with <span>R</span>: A comprehensive resource.</em> Cham: Springer, 2019. URL <a href="https://adriandusa.com/research/books/2019-QCA/">https://adriandusa.com/research/books/2019-QCA/</a>.
+</div>
+<div id="ref-helliwell2025" class="csl-entry" role="listitem">
+J. F. Helliwell, R. Layard, J. D. Sachs, J.-E. De Neve, L. B. Aknin and S. Wang. World happiness report 2025. University of Oxford: Wellbeing Research Centre. 2025. URL <a href="https://worldhappiness.report/ed/2025/">https://worldhappiness.report/ed/2025/</a>.
+</div>
+<div id="ref-oanaschneider2024" class="csl-entry" role="listitem">
+I.-E. Oana and C. Q. Schneider. A robustness test protocol for applied <span>QCA</span>: Theory and <span>R</span> software application. <em>Sociological Methods &amp; Research</em>, 53(1): 57–88, 2024. URL <a href="https://doi.org/10.1177/00491241211036158">https://doi.org/10.1177/00491241211036158</a>.
+</div>
+<div id="ref-oanaschneider2018" class="csl-entry" role="listitem">
+I.-E. Oana and C. Q. Schneider. <span>SetMethods</span>: An add-on <span>R</span> package for advanced <span>QCA</span>. <em>The R Journal</em>, 10(1): 507–533, 2018. URL <a href="https://journal.r-project.org/archive/2018/RJ-2018-031/index.html">https://journal.r-project.org/archive/2018/RJ-2018-031/index.html</a>.
+</div>
+<div id="ref-oanathomann2021" class="csl-entry" role="listitem">
+I.-E. Oana, C. Q. Schneider and E. Thomann. <em>Qualitative comparative analysis using <span>R</span>: A beginner’s guide.</em> Cambridge: Cambridge University Press, 2021. URL <a href="https://doi.org/10.1017/9781009006781">https://doi.org/10.1017/9781009006781</a>.
+</div>
+<div id="ref-ragin2014" class="csl-entry" role="listitem">
+C. C. Ragin. <em>The comparative method: Moving beyond qualitative and quantitative strategies.</em> Oakland, California: University of California Press, 2014. URL <a href="https://www.ucpress.edu/books/the-comparative-method/paper">https://www.ucpress.edu/books/the-comparative-method/paper</a>.
+</div>
+<div id="ref-schneider2015" class="csl-entry" role="listitem">
+C. Q. Schneider. Transparency standards in qualitative comparative analysis. <em>Qualitative &amp; Multi-Method Research</em>, 2015. URL <a href="https://doi.org/10.5281/zenodo.893091">https://doi.org/10.5281/zenodo.893091</a>.
+</div>
+<div id="ref-schneiderwagemann2012" class="csl-entry" role="listitem">
+C. Q. Schneider and C. Wagemann. <em>Set-theoretic methods for the social sciences: A guide to qualitative comparative analysis.</em> Cambridge: Cambridge University Press, 2012. URL <a href="https://doi.org/10.1017/CBO9781139004244">https://doi.org/10.1017/CBO9781139004244</a>.
+</div>
+<div id="ref-skaaning2011" class="csl-entry" role="listitem">
+S.-E. Skaaning. Assessing the robustness of crisp-set and fuzzy-set <span>QCA</span> results. <em>Sociological Methods &amp; Research</em>, 40(2): 391–408, 2011. URL <a href="https://doi.org/10.1177/0049124111404818">https://doi.org/10.1177/0049124111404818</a>.
+</div>
+<div id="ref-thomannmaggetti2020" class="csl-entry" role="listitem">
+E. Thomann and M. Maggetti. Designing research with qualitative comparative analysis (<span>QCA</span>): Approaches, challenges, and tools. <em>Sociological Methods &amp; Research</em>, 49(2): 356–386, 2020. URL <a href="https://doi.org/10.1177/0049124117729700">https://doi.org/10.1177/0049124117729700</a>.
+</div>
+</div>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p>Sensitivity ranges identify how far individual calibration anchors, consistency thresholds, or frequency cutoffs can move before the initial solution changes.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Fit-oriented robustness evaluates the overlap among the initial solution, alternative test solutions, and the robust core. Researchers begin with an initial solution and then generate alternative solutions by varying analytically plausible choices, such as calibration anchors, inclusion thresholds, or frequency cutoffs. These alternatives are aggregated into a minimal test set, defined by their intersection, and a maximal test set, defined by their union. The robust core is the intersection between the initial solution and the minimal test set. It therefore captures the part of the original solution that is also present in every alternative solution considered in the robustness exercise. When the robust core coincides with the initial solution, the original result survives the tests in full. When it is smaller, the difference identifies the portion of the initial solution that depends on the original analytic choices.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Case-oriented robustness examines whether observations remain stable, become shaky, or become possible cases under alternative analytic decisions. As a result, robustness is treated as a relation among solutions, set memberships, and case classifications.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>In <code>QCA::truthTable()</code>, rows with <code>n &lt; n.cut</code> are coded as <code>(OUT = "?")</code> regardless of their inclusion score; inclusion/PRI thresholds are applied only to rows with <code>n &gt;= n.cut</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></li>
+</ol>
+</section>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+<h3 id="references">References</h3>
+<div id="references-listing"></div>
+<h3 id="reuse">Reuse</h3>
+<p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+<h3 id="citation">Citation</h3>
+<p>For attribution, please cite this work as</p>
+<pre class="citation-appendix short">Marisguia, "[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis", The R Journal, 2026</pre>
+<p>BibTeX citation</p>
+<pre class="citation-appendix long">@article{draft-qcaert,
+  author = {Marisguia, Breno A. H.},
+  title = {[DRAFT] qcaERT: Robustness Diagnostics for Qualitative Comparative Analysis},
+  journal = {The R Journal},
+  year = {2026},
+  issn = {2073-4859},
+  pages = {1}
+}</pre>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>
